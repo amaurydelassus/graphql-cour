@@ -1,6 +1,6 @@
 datasource db {
   provider = "postgresql"
-  url      = "postgresql://USERNAME:PASSWORD@localhost:5432/task-manager-graphql?schema=public"
+  url      = "postgresql://adelassus@localhost:5432/task-manager-graphql?schema=public"
 }
 
 generator client {
@@ -15,10 +15,32 @@ generator typegraphql {
 }
 
 model User {
-  id              String  @default(cuid()) @id
-  email           String  @unique
-  /// @TypeGraphQL.omit(output: true)
-  password        String
-  /// @TypeGraphQL.omit(output: true, input: true)
-  password_digest   String
+    id              String  @default(cuid()) @id
+    name            String
+    /// @TypeGraphQL.omit(output: true)
+    password        String
+    /// @TypeGraphQL.omit(output: true, input: true)
+    password_digest String
+    last_sign_in_at Date
+    created_at      Date
+    update_at       Date
+}
+
+enum GroupActionsTaskManagerEnums {
+  noUp
+  up
+  admin
+}
+
+enum NameActionsTaskManagerEnums {
+    assigTask
+    commentInAssingTask
+    replayToTask
+    taskEnd
+    deadlineNearing
+}
+
+enum TargetTypeActionTaskManagerEnums {
+    user
+    admin
 }
