@@ -21,9 +21,54 @@ model User {
     password        String
     /// @TypeGraphQL.omit(output: true, input: true)
     password_digest String
-    last_sign_in_at Date
-    created_at      Date
-    update_at       Date
+    last_sign_in_at DateTime
+    created_at      DateTime
+    update_at       DateTime
+}
+
+model Notification {
+  id              String  @default(cuid()) @id
+  target_user     User @relation(fields: [userId], references: [id])
+  userId          String
+  target_action   Action @relation(fields: [actionId], references: [id])
+  actionId        String
+  readed_at       DateTime
+}
+
+model Assignee {
+  id              String  @default(cuid()) @id
+  target_user     User @relation(fields: [userId], references: [id])
+  userId          String
+  target_task     Task @relation(fields: [taskd], references: [id])
+  taskId          String
+  created_at      DateTime @default(now())
+
+  @@index([userId,taskId])
+}
+
+model Comment {
+  id              String  @default(cuid()) @id
+  owner_id        String?
+  owner           User?    @relation(fields: [owner_id], references: [id])
+  target_id       String
+  target          Task     @relation(fields: [target_id], references: [id])
+  target_type     TargetTypeActionTaskManagerEnums
+  parent_id       Int
+  content         String
+  created_at      DateTime @default(now())
+  updated_at      DateTime
+}
+
+model Task {
+  id              String  @default(cuid()) @id
+  title           String
+  description     String
+  owner_id        String
+  owner           User     @relation(fields: [owner_id], references: [id])
+  due_at          DateTime
+  created_at      DateTime @default(now())
+  updated_at      DateTime
+  state           StateTaskTaskManagerEnums
 }
 
 enum GroupActionsTaskManagerEnums {
@@ -33,6 +78,14 @@ enum GroupActionsTaskManagerEnums {
 }
 
 enum NameActionsTaskManagerEnums {
+    assigTask
+    commentInAssingTask
+    replayToTask
+    taskEnd
+    deadlineNearing
+}
+
+enum StateTaskTaskManagerEnums {
     assigTask
     commentInAssingTask
     replayToTask
