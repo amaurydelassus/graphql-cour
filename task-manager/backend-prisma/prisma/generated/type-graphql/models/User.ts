@@ -17,8 +17,10 @@ export class User {
     nullable: false
   })
   email!: string;
-
+  name : string;
   password?: string;
-
   password_digest?: string;
+  last_sign_in_at : Date;
+  created_at : Date;
+  update_at : Date ;
 }
