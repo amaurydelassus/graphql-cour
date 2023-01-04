@@ -3,8 +3,267 @@
 # !!!   DO NOT MODIFY THIS FILE BY YOURSELF   !!!
 # -----------------------------------------------
 
+type Action {
+  _count: ActionCount
+  created_at: DateTime!
+  group: GroupActionsTaskManagerEnums!
+  id: ID!
+  name: NameActionsTaskManagerEnums!
+  notifications(cursor: NotificationWhereUniqueInput, distinct: [NotificationScalarFieldEnum!], orderBy: [NotificationOrderByWithRelationInput!], skip: Int, take: Int, where: NotificationWhereInput): [Notification!]!
+  target_id: String!
+  target_type: TargetTypeActionTaskManagerEnums!
+}
+
+type ActionCount {
+  notifications: Int!
+}
+
+type ActionCountAggregate {
+  _all: Int!
+  created_at: Int!
+  group: Int!
+  id: Int!
+  name: Int!
+  target_id: Int!
+  target_type: Int!
+}
+
+input ActionCountOrderByAggregateInput {
+  created_at: SortOrder
+  group: SortOrder
+  id: SortOrder
+  name: SortOrder
+  target_id: SortOrder
+  target_type: SortOrder
+}
+
+input ActionCreateInput {
+  created_at: DateTime!
+  group: GroupActionsTaskManagerEnums!
+  id: String
+  name: NameActionsTaskManagerEnums!
+  notifications: NotificationCreateNestedManyWithoutTarget_actionInput
+  target_id: String!
+  target_type: TargetTypeActionTaskManagerEnums!
+}
+
+input ActionCreateManyInput {
+  created_at: DateTime!
+  group: GroupActionsTaskManagerEnums!
+  id: String
+  name: NameActionsTaskManagerEnums!
+  target_id: String!
+  target_type: TargetTypeActionTaskManagerEnums!
+}
+
+input ActionCreateNestedOneWithoutNotificationsInput {
+  connect: ActionWhereUniqueInput
+  connectOrCreate: ActionCreateOrConnectWithoutNotificationsInput
+  create: ActionCreateWithoutNotificationsInput
+}
+
+input ActionCreateOrConnectWithoutNotificationsInput {
+  create: ActionCreateWithoutNotificationsInput!
+  where: ActionWhereUniqueInput!
+}
+
+input ActionCreateWithoutNotificationsInput {
+  created_at: DateTime!
+  group: GroupActionsTaskManagerEnums!
+  id: String
+  name: NameActionsTaskManagerEnums!
+  target_id: String!
+  target_type: TargetTypeActionTaskManagerEnums!
+}
+
+type ActionGroupBy {
+  _count: ActionCountAggregate
+  _max: ActionMaxAggregate
+  _min: ActionMinAggregate
+  created_at: DateTime!
+  group: GroupActionsTaskManagerEnums!
+  id: String!
+  name: NameActionsTaskManagerEnums!
+  target_id: String!
+  target_type: TargetTypeActionTaskManagerEnums!
+}
+
+type ActionMaxAggregate {
+  created_at: DateTime
+  group: GroupActionsTaskManagerEnums
+  id: String
+  name: NameActionsTaskManagerEnums
+  target_id: String
+  target_type: TargetTypeActionTaskManagerEnums
+}
+
+input ActionMaxOrderByAggregateInput {
+  created_at: SortOrder
+  group: SortOrder
+  id: SortOrder
+  name: SortOrder
+  target_id: SortOrder
+  target_type: SortOrder
+}
+
+type ActionMinAggregate {
+  created_at: DateTime
+  group: GroupActionsTaskManagerEnums
+  id: String
+  name: NameActionsTaskManagerEnums
+  target_id: String
+  target_type: TargetTypeActionTaskManagerEnums
+}
+
+input ActionMinOrderByAggregateInput {
+  created_at: SortOrder
+  group: SortOrder
+  id: SortOrder
+  name: SortOrder
+  target_id: SortOrder
+  target_type: SortOrder
+}
+
+input ActionOrderByWithAggregationInput {
+  _count: ActionCountOrderByAggregateInput
+  _max: ActionMaxOrderByAggregateInput
+  _min: ActionMinOrderByAggregateInput
+  created_at: SortOrder
+  group: SortOrder
+  id: SortOrder
+  name: SortOrder
+  target_id: SortOrder
+  target_type: SortOrder
+}
+
+input ActionOrderByWithRelationInput {
+  created_at: SortOrder
+  group: SortOrder
+  id: SortOrder
+  name: SortOrder
+  notifications: NotificationOrderByRelationAggregateInput
+  target_id: SortOrder
+  target_type: SortOrder
+}
+
+input ActionRelationFilter {
+  is: ActionWhereInput
+  isNot: ActionWhereInput
+}
+
+enum ActionScalarFieldEnum {
+  created_at
+  group
+  id
+  name
+  target_id
+  target_type
+}
+
+input ActionScalarWhereWithAggregatesInput {
+  AND: [ActionScalarWhereWithAggregatesInput!]
+  NOT: [ActionScalarWhereWithAggregatesInput!]
+  OR: [ActionScalarWhereWithAggregatesInput!]
+  created_at: DateTimeWithAggregatesFilter
+  group: EnumGroupActionsTaskManagerEnumsWithAggregatesFilter
+  id: StringWithAggregatesFilter
+  name: EnumNameActionsTaskManagerEnumsWithAggregatesFilter
+  target_id: StringWithAggregatesFilter
+  target_type: EnumTargetTypeActionTaskManagerEnumsWithAggregatesFilter
+}
+
+input ActionUpdateInput {
+  created_at: DateTimeFieldUpdateOperationsInput
+  group: EnumGroupActionsTaskManagerEnumsFieldUpdateOperationsInput
+  id: StringFieldUpdateOperationsInput
+  name: EnumNameActionsTaskManagerEnumsFieldUpdateOperationsInput
+  notifications: NotificationUpdateManyWithoutTarget_actionNestedInput
+  target_id: StringFieldUpdateOperationsInput
+  target_type: EnumTargetTypeActionTaskManagerEnumsFieldUpdateOperationsInput
+}
+
+input ActionUpdateManyMutationInput {
+  created_at: DateTimeFieldUpdateOperationsInput
+  group: EnumGroupActionsTaskManagerEnumsFieldUpdateOperationsInput
+  id: StringFieldUpdateOperationsInput
+  name: EnumNameActionsTaskManagerEnumsFieldUpdateOperationsInput
+  target_id: StringFieldUpdateOperationsInput
+  target_type: EnumTargetTypeActionTaskManagerEnumsFieldUpdateOperationsInput
+}
+
+input ActionUpdateOneRequiredWithoutNotificationsNestedInput {
+  connect: ActionWhereUniqueInput
+  connectOrCreate: ActionCreateOrConnectWithoutNotificationsInput
+  create: ActionCreateWithoutNotificationsInput
+  update: ActionUpdateWithoutNotificationsInput
+  upsert: ActionUpsertWithoutNotificationsInput
+}
+
+input ActionUpdateWithoutNotificationsInput {
+  created_at: DateTimeFieldUpdateOperationsInput
+  group: EnumGroupActionsTaskManagerEnumsFieldUpdateOperationsInput
+  id: StringFieldUpdateOperationsInput
+  name: EnumNameActionsTaskManagerEnumsFieldUpdateOperationsInput
+  target_id: StringFieldUpdateOperationsInput
+  target_type: EnumTargetTypeActionTaskManagerEnumsFieldUpdateOperationsInput
+}
+
+input ActionUpsertWithoutNotificationsInput {
+  create: ActionCreateWithoutNotificationsInput!
+  update: ActionUpdateWithoutNotificationsInput!
+}
+
+input ActionWhereInput {
+  AND: [ActionWhereInput!]
+  NOT: [ActionWhereInput!]
+  OR: [ActionWhereInput!]
+  created_at: DateTimeFilter
+  group: EnumGroupActionsTaskManagerEnumsFilter
+  id: StringFilter
+  name: EnumNameActionsTaskManagerEnumsFilter
+  notifications: NotificationListRelationFilter
+  target_id: StringFilter
+  target_type: EnumTargetTypeActionTaskManagerEnumsFilter
+}
+
+input ActionWhereUniqueInput {
+  id: String
+}
+
 type AffectedRowsOutput {
   count: Int!
+}
+
+type AggregateAction {
+  _count: ActionCountAggregate
+  _max: ActionMaxAggregate
+  _min: ActionMinAggregate
+}
+
+type AggregateAssignee {
+  _count: AssigneeCountAggregate
+  _max: AssigneeMaxAggregate
+  _min: AssigneeMinAggregate
+}
+
+type AggregateComment {
+  _avg: CommentAvgAggregate
+  _count: CommentCountAggregate
+  _max: CommentMaxAggregate
+  _min: CommentMinAggregate
+  _sum: CommentSumAggregate
+}
+
+type AggregateNotification {
+  _count: NotificationCountAggregate
+  _max: NotificationMaxAggregate
+  _min: NotificationMinAggregate
+}
+
+type AggregateTask {
+  _count: TaskCountAggregate
+  _max: TaskMaxAggregate
+  _min: TaskMinAggregate
 }
 
 type AggregateUser {
@@ -13,14 +272,1016 @@ type AggregateUser {
   _min: UserMinAggregate
 }
 
+type Assignee {
+  created_at: DateTime!
+  id: ID!
+  target_task: Task!
+  target_user: User!
+  taskId: String!
+  userId: String!
+}
+
+type AssigneeCountAggregate {
+  _all: Int!
+  created_at: Int!
+  id: Int!
+  taskId: Int!
+  userId: Int!
+}
+
+input AssigneeCountOrderByAggregateInput {
+  created_at: SortOrder
+  id: SortOrder
+  taskId: SortOrder
+  userId: SortOrder
+}
+
+input AssigneeCreateInput {
+  created_at: DateTime
+  id: String
+  target_task: TaskCreateNestedOneWithoutAssigneeInput!
+  target_user: UserCreateNestedOneWithoutAssigneesInput!
+}
+
+input AssigneeCreateManyInput {
+  created_at: DateTime
+  id: String
+  taskId: String!
+  userId: String!
+}
+
+input AssigneeCreateManyTarget_taskInput {
+  created_at: DateTime
+  id: String
+  userId: String!
+}
+
+input AssigneeCreateManyTarget_taskInputEnvelope {
+  data: [AssigneeCreateManyTarget_taskInput!]!
+  skipDuplicates: Boolean
+}
+
+input AssigneeCreateManyTarget_userInput {
+  created_at: DateTime
+  id: String
+  taskId: String!
+}
+
+input AssigneeCreateManyTarget_userInputEnvelope {
+  data: [AssigneeCreateManyTarget_userInput!]!
+  skipDuplicates: Boolean
+}
+
+input AssigneeCreateNestedManyWithoutTarget_taskInput {
+  connect: [AssigneeWhereUniqueInput!]
+  connectOrCreate: [AssigneeCreateOrConnectWithoutTarget_taskInput!]
+  create: [AssigneeCreateWithoutTarget_taskInput!]
+  createMany: AssigneeCreateManyTarget_taskInputEnvelope
+}
+
+input AssigneeCreateNestedManyWithoutTarget_userInput {
+  connect: [AssigneeWhereUniqueInput!]
+  connectOrCreate: [AssigneeCreateOrConnectWithoutTarget_userInput!]
+  create: [AssigneeCreateWithoutTarget_userInput!]
+  createMany: AssigneeCreateManyTarget_userInputEnvelope
+}
+
+input AssigneeCreateOrConnectWithoutTarget_taskInput {
+  create: AssigneeCreateWithoutTarget_taskInput!
+  where: AssigneeWhereUniqueInput!
+}
+
+input AssigneeCreateOrConnectWithoutTarget_userInput {
+  create: AssigneeCreateWithoutTarget_userInput!
+  where: AssigneeWhereUniqueInput!
+}
+
+input AssigneeCreateWithoutTarget_taskInput {
+  created_at: DateTime
+  id: String
+  target_user: UserCreateNestedOneWithoutAssigneesInput!
+}
+
+input AssigneeCreateWithoutTarget_userInput {
+  created_at: DateTime
+  id: String
+  target_task: TaskCreateNestedOneWithoutAssigneeInput!
+}
+
+type AssigneeGroupBy {
+  _count: AssigneeCountAggregate
+  _max: AssigneeMaxAggregate
+  _min: AssigneeMinAggregate
+  created_at: DateTime!
+  id: String!
+  taskId: String!
+  userId: String!
+}
+
+input AssigneeListRelationFilter {
+  every: AssigneeWhereInput
+  none: AssigneeWhereInput
+  some: AssigneeWhereInput
+}
+
+type AssigneeMaxAggregate {
+  created_at: DateTime
+  id: String
+  taskId: String
+  userId: String
+}
+
+input AssigneeMaxOrderByAggregateInput {
+  created_at: SortOrder
+  id: SortOrder
+  taskId: SortOrder
+  userId: SortOrder
+}
+
+type AssigneeMinAggregate {
+  created_at: DateTime
+  id: String
+  taskId: String
+  userId: String
+}
+
+input AssigneeMinOrderByAggregateInput {
+  created_at: SortOrder
+  id: SortOrder
+  taskId: SortOrder
+  userId: SortOrder
+}
+
+input AssigneeOrderByRelationAggregateInput {
+  _count: SortOrder
+}
+
+input AssigneeOrderByWithAggregationInput {
+  _count: AssigneeCountOrderByAggregateInput
+  _max: AssigneeMaxOrderByAggregateInput
+  _min: AssigneeMinOrderByAggregateInput
+  created_at: SortOrder
+  id: SortOrder
+  taskId: SortOrder
+  userId: SortOrder
+}
+
+input AssigneeOrderByWithRelationInput {
+  created_at: SortOrder
+  id: SortOrder
+  target_task: TaskOrderByWithRelationInput
+  target_user: UserOrderByWithRelationInput
+  taskId: SortOrder
+  userId: SortOrder
+}
+
+enum AssigneeScalarFieldEnum {
+  created_at
+  id
+  taskId
+  userId
+}
+
+input AssigneeScalarWhereInput {
+  AND: [AssigneeScalarWhereInput!]
+  NOT: [AssigneeScalarWhereInput!]
+  OR: [AssigneeScalarWhereInput!]
+  created_at: DateTimeFilter
+  id: StringFilter
+  taskId: StringFilter
+  userId: StringFilter
+}
+
+input AssigneeScalarWhereWithAggregatesInput {
+  AND: [AssigneeScalarWhereWithAggregatesInput!]
+  NOT: [AssigneeScalarWhereWithAggregatesInput!]
+  OR: [AssigneeScalarWhereWithAggregatesInput!]
+  created_at: DateTimeWithAggregatesFilter
+  id: StringWithAggregatesFilter
+  taskId: StringWithAggregatesFilter
+  userId: StringWithAggregatesFilter
+}
+
+input AssigneeUpdateInput {
+  created_at: DateTimeFieldUpdateOperationsInput
+  id: StringFieldUpdateOperationsInput
+  target_task: TaskUpdateOneRequiredWithoutAssigneeNestedInput
+  target_user: UserUpdateOneRequiredWithoutAssigneesNestedInput
+}
+
+input AssigneeUpdateManyMutationInput {
+  created_at: DateTimeFieldUpdateOperationsInput
+  id: StringFieldUpdateOperationsInput
+}
+
+input AssigneeUpdateManyWithWhereWithoutTarget_taskInput {
+  data: AssigneeUpdateManyMutationInput!
+  where: AssigneeScalarWhereInput!
+}
+
+input AssigneeUpdateManyWithWhereWithoutTarget_userInput {
+  data: AssigneeUpdateManyMutationInput!
+  where: AssigneeScalarWhereInput!
+}
+
+input AssigneeUpdateManyWithoutTarget_taskNestedInput {
+  connect: [AssigneeWhereUniqueInput!]
+  connectOrCreate: [AssigneeCreateOrConnectWithoutTarget_taskInput!]
+  create: [AssigneeCreateWithoutTarget_taskInput!]
+  createMany: AssigneeCreateManyTarget_taskInputEnvelope
+  delete: [AssigneeWhereUniqueInput!]
+  deleteMany: [AssigneeScalarWhereInput!]
+  disconnect: [AssigneeWhereUniqueInput!]
+  set: [AssigneeWhereUniqueInput!]
+  update: [AssigneeUpdateWithWhereUniqueWithoutTarget_taskInput!]
+  updateMany: [AssigneeUpdateManyWithWhereWithoutTarget_taskInput!]
+  upsert: [AssigneeUpsertWithWhereUniqueWithoutTarget_taskInput!]
+}
+
+input AssigneeUpdateManyWithoutTarget_userNestedInput {
+  connect: [AssigneeWhereUniqueInput!]
+  connectOrCreate: [AssigneeCreateOrConnectWithoutTarget_userInput!]
+  create: [AssigneeCreateWithoutTarget_userInput!]
+  createMany: AssigneeCreateManyTarget_userInputEnvelope
+  delete: [AssigneeWhereUniqueInput!]
+  deleteMany: [AssigneeScalarWhereInput!]
+  disconnect: [AssigneeWhereUniqueInput!]
+  set: [AssigneeWhereUniqueInput!]
+  update: [AssigneeUpdateWithWhereUniqueWithoutTarget_userInput!]
+  updateMany: [AssigneeUpdateManyWithWhereWithoutTarget_userInput!]
+  upsert: [AssigneeUpsertWithWhereUniqueWithoutTarget_userInput!]
+}
+
+input AssigneeUpdateWithWhereUniqueWithoutTarget_taskInput {
+  data: AssigneeUpdateWithoutTarget_taskInput!
+  where: AssigneeWhereUniqueInput!
+}
+
+input AssigneeUpdateWithWhereUniqueWithoutTarget_userInput {
+  data: AssigneeUpdateWithoutTarget_userInput!
+  where: AssigneeWhereUniqueInput!
+}
+
+input AssigneeUpdateWithoutTarget_taskInput {
+  created_at: DateTimeFieldUpdateOperationsInput
+  id: StringFieldUpdateOperationsInput
+  target_user: UserUpdateOneRequiredWithoutAssigneesNestedInput
+}
+
+input AssigneeUpdateWithoutTarget_userInput {
+  created_at: DateTimeFieldUpdateOperationsInput
+  id: StringFieldUpdateOperationsInput
+  target_task: TaskUpdateOneRequiredWithoutAssigneeNestedInput
+}
+
+input AssigneeUpsertWithWhereUniqueWithoutTarget_taskInput {
+  create: AssigneeCreateWithoutTarget_taskInput!
+  update: AssigneeUpdateWithoutTarget_taskInput!
+  where: AssigneeWhereUniqueInput!
+}
+
+input AssigneeUpsertWithWhereUniqueWithoutTarget_userInput {
+  create: AssigneeCreateWithoutTarget_userInput!
+  update: AssigneeUpdateWithoutTarget_userInput!
+  where: AssigneeWhereUniqueInput!
+}
+
+input AssigneeWhereInput {
+  AND: [AssigneeWhereInput!]
+  NOT: [AssigneeWhereInput!]
+  OR: [AssigneeWhereInput!]
+  created_at: DateTimeFilter
+  id: StringFilter
+  target_task: TaskRelationFilter
+  target_user: UserRelationFilter
+  taskId: StringFilter
+  userId: StringFilter
+}
+
+input AssigneeWhereUniqueInput {
+  id: String
+}
+
+type Comment {
+  content: String!
+  created_at: DateTime!
+  id: ID!
+  owner: User
+  owner_id: String
+  parent_id: Int!
+  target: Task!
+  target_id: String!
+  target_type: TargetTypeActionTaskManagerEnums!
+  updated_at: DateTime!
+}
+
+type CommentAvgAggregate {
+  parent_id: Float
+}
+
+input CommentAvgOrderByAggregateInput {
+  parent_id: SortOrder
+}
+
+type CommentCountAggregate {
+  _all: Int!
+  content: Int!
+  created_at: Int!
+  id: Int!
+  owner_id: Int!
+  parent_id: Int!
+  target_id: Int!
+  target_type: Int!
+  updated_at: Int!
+}
+
+input CommentCountOrderByAggregateInput {
+  content: SortOrder
+  created_at: SortOrder
+  id: SortOrder
+  owner_id: SortOrder
+  parent_id: SortOrder
+  target_id: SortOrder
+  target_type: SortOrder
+  updated_at: SortOrder
+}
+
+input CommentCreateInput {
+  content: String!
+  created_at: DateTime
+  id: String
+  owner: UserCreateNestedOneWithoutCommentsInput
+  parent_id: Int!
+  target: TaskCreateNestedOneWithoutCommentsInput!
+  target_type: TargetTypeActionTaskManagerEnums!
+  updated_at: DateTime!
+}
+
+input CommentCreateManyInput {
+  content: String!
+  created_at: DateTime
+  id: String
+  owner_id: String
+  parent_id: Int!
+  target_id: String!
+  target_type: TargetTypeActionTaskManagerEnums!
+  updated_at: DateTime!
+}
+
+input CommentCreateManyOwnerInput {
+  content: String!
+  created_at: DateTime
+  id: String
+  parent_id: Int!
+  target_id: String!
+  target_type: TargetTypeActionTaskManagerEnums!
+  updated_at: DateTime!
+}
+
+input CommentCreateManyOwnerInputEnvelope {
+  data: [CommentCreateManyOwnerInput!]!
+  skipDuplicates: Boolean
+}
+
+input CommentCreateManyTargetInput {
+  content: String!
+  created_at: DateTime
+  id: String
+  owner_id: String
+  parent_id: Int!
+  target_type: TargetTypeActionTaskManagerEnums!
+  updated_at: DateTime!
+}
+
+input CommentCreateManyTargetInputEnvelope {
+  data: [CommentCreateManyTargetInput!]!
+  skipDuplicates: Boolean
+}
+
+input CommentCreateNestedManyWithoutOwnerInput {
+  connect: [CommentWhereUniqueInput!]
+  connectOrCreate: [CommentCreateOrConnectWithoutOwnerInput!]
+  create: [CommentCreateWithoutOwnerInput!]
+  createMany: CommentCreateManyOwnerInputEnvelope
+}
+
+input CommentCreateNestedManyWithoutTargetInput {
+  connect: [CommentWhereUniqueInput!]
+  connectOrCreate: [CommentCreateOrConnectWithoutTargetInput!]
+  create: [CommentCreateWithoutTargetInput!]
+  createMany: CommentCreateManyTargetInputEnvelope
+}
+
+input CommentCreateOrConnectWithoutOwnerInput {
+  create: CommentCreateWithoutOwnerInput!
+  where: CommentWhereUniqueInput!
+}
+
+input CommentCreateOrConnectWithoutTargetInput {
+  create: CommentCreateWithoutTargetInput!
+  where: CommentWhereUniqueInput!
+}
+
+input CommentCreateWithoutOwnerInput {
+  content: String!
+  created_at: DateTime
+  id: String
+  parent_id: Int!
+  target: TaskCreateNestedOneWithoutCommentsInput!
+  target_type: TargetTypeActionTaskManagerEnums!
+  updated_at: DateTime!
+}
+
+input CommentCreateWithoutTargetInput {
+  content: String!
+  created_at: DateTime
+  id: String
+  owner: UserCreateNestedOneWithoutCommentsInput
+  parent_id: Int!
+  target_type: TargetTypeActionTaskManagerEnums!
+  updated_at: DateTime!
+}
+
+type CommentGroupBy {
+  _avg: CommentAvgAggregate
+  _count: CommentCountAggregate
+  _max: CommentMaxAggregate
+  _min: CommentMinAggregate
+  _sum: CommentSumAggregate
+  content: String!
+  created_at: DateTime!
+  id: String!
+  owner_id: String
+  parent_id: Int!
+  target_id: String!
+  target_type: TargetTypeActionTaskManagerEnums!
+  updated_at: DateTime!
+}
+
+input CommentListRelationFilter {
+  every: CommentWhereInput
+  none: CommentWhereInput
+  some: CommentWhereInput
+}
+
+type CommentMaxAggregate {
+  content: String
+  created_at: DateTime
+  id: String
+  owner_id: String
+  parent_id: Int
+  target_id: String
+  target_type: TargetTypeActionTaskManagerEnums
+  updated_at: DateTime
+}
+
+input CommentMaxOrderByAggregateInput {
+  content: SortOrder
+  created_at: SortOrder
+  id: SortOrder
+  owner_id: SortOrder
+  parent_id: SortOrder
+  target_id: SortOrder
+  target_type: SortOrder
+  updated_at: SortOrder
+}
+
+type CommentMinAggregate {
+  content: String
+  created_at: DateTime
+  id: String
+  owner_id: String
+  parent_id: Int
+  target_id: String
+  target_type: TargetTypeActionTaskManagerEnums
+  updated_at: DateTime
+}
+
+input CommentMinOrderByAggregateInput {
+  content: SortOrder
+  created_at: SortOrder
+  id: SortOrder
+  owner_id: SortOrder
+  parent_id: SortOrder
+  target_id: SortOrder
+  target_type: SortOrder
+  updated_at: SortOrder
+}
+
+input CommentOrderByRelationAggregateInput {
+  _count: SortOrder
+}
+
+input CommentOrderByWithAggregationInput {
+  _avg: CommentAvgOrderByAggregateInput
+  _count: CommentCountOrderByAggregateInput
+  _max: CommentMaxOrderByAggregateInput
+  _min: CommentMinOrderByAggregateInput
+  _sum: CommentSumOrderByAggregateInput
+  content: SortOrder
+  created_at: SortOrder
+  id: SortOrder
+  owner_id: SortOrder
+  parent_id: SortOrder
+  target_id: SortOrder
+  target_type: SortOrder
+  updated_at: SortOrder
+}
+
+input CommentOrderByWithRelationInput {
+  content: SortOrder
+  created_at: SortOrder
+  id: SortOrder
+  owner: UserOrderByWithRelationInput
+  owner_id: SortOrder
+  parent_id: SortOrder
+  target: TaskOrderByWithRelationInput
+  target_id: SortOrder
+  target_type: SortOrder
+  updated_at: SortOrder
+}
+
+enum CommentScalarFieldEnum {
+  content
+  created_at
+  id
+  owner_id
+  parent_id
+  target_id
+  target_type
+  updated_at
+}
+
+input CommentScalarWhereInput {
+  AND: [CommentScalarWhereInput!]
+  NOT: [CommentScalarWhereInput!]
+  OR: [CommentScalarWhereInput!]
+  content: StringFilter
+  created_at: DateTimeFilter
+  id: StringFilter
+  owner_id: StringNullableFilter
+  parent_id: IntFilter
+  target_id: StringFilter
+  target_type: EnumTargetTypeActionTaskManagerEnumsFilter
+  updated_at: DateTimeFilter
+}
+
+input CommentScalarWhereWithAggregatesInput {
+  AND: [CommentScalarWhereWithAggregatesInput!]
+  NOT: [CommentScalarWhereWithAggregatesInput!]
+  OR: [CommentScalarWhereWithAggregatesInput!]
+  content: StringWithAggregatesFilter
+  created_at: DateTimeWithAggregatesFilter
+  id: StringWithAggregatesFilter
+  owner_id: StringNullableWithAggregatesFilter
+  parent_id: IntWithAggregatesFilter
+  target_id: StringWithAggregatesFilter
+  target_type: EnumTargetTypeActionTaskManagerEnumsWithAggregatesFilter
+  updated_at: DateTimeWithAggregatesFilter
+}
+
+type CommentSumAggregate {
+  parent_id: Int
+}
+
+input CommentSumOrderByAggregateInput {
+  parent_id: SortOrder
+}
+
+input CommentUpdateInput {
+  content: StringFieldUpdateOperationsInput
+  created_at: DateTimeFieldUpdateOperationsInput
+  id: StringFieldUpdateOperationsInput
+  owner: UserUpdateOneWithoutCommentsNestedInput
+  parent_id: IntFieldUpdateOperationsInput
+  target: TaskUpdateOneRequiredWithoutCommentsNestedInput
+  target_type: EnumTargetTypeActionTaskManagerEnumsFieldUpdateOperationsInput
+  updated_at: DateTimeFieldUpdateOperationsInput
+}
+
+input CommentUpdateManyMutationInput {
+  content: StringFieldUpdateOperationsInput
+  created_at: DateTimeFieldUpdateOperationsInput
+  id: StringFieldUpdateOperationsInput
+  parent_id: IntFieldUpdateOperationsInput
+  target_type: EnumTargetTypeActionTaskManagerEnumsFieldUpdateOperationsInput
+  updated_at: DateTimeFieldUpdateOperationsInput
+}
+
+input CommentUpdateManyWithWhereWithoutOwnerInput {
+  data: CommentUpdateManyMutationInput!
+  where: CommentScalarWhereInput!
+}
+
+input CommentUpdateManyWithWhereWithoutTargetInput {
+  data: CommentUpdateManyMutationInput!
+  where: CommentScalarWhereInput!
+}
+
+input CommentUpdateManyWithoutOwnerNestedInput {
+  connect: [CommentWhereUniqueInput!]
+  connectOrCreate: [CommentCreateOrConnectWithoutOwnerInput!]
+  create: [CommentCreateWithoutOwnerInput!]
+  createMany: CommentCreateManyOwnerInputEnvelope
+  delete: [CommentWhereUniqueInput!]
+  deleteMany: [CommentScalarWhereInput!]
+  disconnect: [CommentWhereUniqueInput!]
+  set: [CommentWhereUniqueInput!]
+  update: [CommentUpdateWithWhereUniqueWithoutOwnerInput!]
+  updateMany: [CommentUpdateManyWithWhereWithoutOwnerInput!]
+  upsert: [CommentUpsertWithWhereUniqueWithoutOwnerInput!]
+}
+
+input CommentUpdateManyWithoutTargetNestedInput {
+  connect: [CommentWhereUniqueInput!]
+  connectOrCreate: [CommentCreateOrConnectWithoutTargetInput!]
+  create: [CommentCreateWithoutTargetInput!]
+  createMany: CommentCreateManyTargetInputEnvelope
+  delete: [CommentWhereUniqueInput!]
+  deleteMany: [CommentScalarWhereInput!]
+  disconnect: [CommentWhereUniqueInput!]
+  set: [CommentWhereUniqueInput!]
+  update: [CommentUpdateWithWhereUniqueWithoutTargetInput!]
+  updateMany: [CommentUpdateManyWithWhereWithoutTargetInput!]
+  upsert: [CommentUpsertWithWhereUniqueWithoutTargetInput!]
+}
+
+input CommentUpdateWithWhereUniqueWithoutOwnerInput {
+  data: CommentUpdateWithoutOwnerInput!
+  where: CommentWhereUniqueInput!
+}
+
+input CommentUpdateWithWhereUniqueWithoutTargetInput {
+  data: CommentUpdateWithoutTargetInput!
+  where: CommentWhereUniqueInput!
+}
+
+input CommentUpdateWithoutOwnerInput {
+  content: StringFieldUpdateOperationsInput
+  created_at: DateTimeFieldUpdateOperationsInput
+  id: StringFieldUpdateOperationsInput
+  parent_id: IntFieldUpdateOperationsInput
+  target: TaskUpdateOneRequiredWithoutCommentsNestedInput
+  target_type: EnumTargetTypeActionTaskManagerEnumsFieldUpdateOperationsInput
+  updated_at: DateTimeFieldUpdateOperationsInput
+}
+
+input CommentUpdateWithoutTargetInput {
+  content: StringFieldUpdateOperationsInput
+  created_at: DateTimeFieldUpdateOperationsInput
+  id: StringFieldUpdateOperationsInput
+  owner: UserUpdateOneWithoutCommentsNestedInput
+  parent_id: IntFieldUpdateOperationsInput
+  target_type: EnumTargetTypeActionTaskManagerEnumsFieldUpdateOperationsInput
+  updated_at: DateTimeFieldUpdateOperationsInput
+}
+
+input CommentUpsertWithWhereUniqueWithoutOwnerInput {
+  create: CommentCreateWithoutOwnerInput!
+  update: CommentUpdateWithoutOwnerInput!
+  where: CommentWhereUniqueInput!
+}
+
+input CommentUpsertWithWhereUniqueWithoutTargetInput {
+  create: CommentCreateWithoutTargetInput!
+  update: CommentUpdateWithoutTargetInput!
+  where: CommentWhereUniqueInput!
+}
+
+input CommentWhereInput {
+  AND: [CommentWhereInput!]
+  NOT: [CommentWhereInput!]
+  OR: [CommentWhereInput!]
+  content: StringFilter
+  created_at: DateTimeFilter
+  id: StringFilter
+  owner: UserRelationFilter
+  owner_id: StringNullableFilter
+  parent_id: IntFilter
+  target: TaskRelationFilter
+  target_id: StringFilter
+  target_type: EnumTargetTypeActionTaskManagerEnumsFilter
+  updated_at: DateTimeFilter
+}
+
+input CommentWhereUniqueInput {
+  id: String
+}
+
+"""
+The javascript `Date` as string. Type represents date and time as the ISO Date string.
+"""
+scalar DateTime
+
+input DateTimeFieldUpdateOperationsInput {
+  set: DateTime
+}
+
+input DateTimeFilter {
+  equals: DateTime
+  gt: DateTime
+  gte: DateTime
+  in: [DateTime!]
+  lt: DateTime
+  lte: DateTime
+  not: NestedDateTimeFilter
+  notIn: [DateTime!]
+}
+
+input DateTimeWithAggregatesFilter {
+  _count: NestedIntFilter
+  _max: NestedDateTimeFilter
+  _min: NestedDateTimeFilter
+  equals: DateTime
+  gt: DateTime
+  gte: DateTime
+  in: [DateTime!]
+  lt: DateTime
+  lte: DateTime
+  not: NestedDateTimeWithAggregatesFilter
+  notIn: [DateTime!]
+}
+
+input EnumGroupActionsTaskManagerEnumsFieldUpdateOperationsInput {
+  set: GroupActionsTaskManagerEnums
+}
+
+input EnumGroupActionsTaskManagerEnumsFilter {
+  equals: GroupActionsTaskManagerEnums
+  in: [GroupActionsTaskManagerEnums!]
+  not: NestedEnumGroupActionsTaskManagerEnumsFilter
+  notIn: [GroupActionsTaskManagerEnums!]
+}
+
+input EnumGroupActionsTaskManagerEnumsWithAggregatesFilter {
+  _count: NestedIntFilter
+  _max: NestedEnumGroupActionsTaskManagerEnumsFilter
+  _min: NestedEnumGroupActionsTaskManagerEnumsFilter
+  equals: GroupActionsTaskManagerEnums
+  in: [GroupActionsTaskManagerEnums!]
+  not: NestedEnumGroupActionsTaskManagerEnumsWithAggregatesFilter
+  notIn: [GroupActionsTaskManagerEnums!]
+}
+
+input EnumNameActionsTaskManagerEnumsFieldUpdateOperationsInput {
+  set: NameActionsTaskManagerEnums
+}
+
+input EnumNameActionsTaskManagerEnumsFilter {
+  equals: NameActionsTaskManagerEnums
+  in: [NameActionsTaskManagerEnums!]
+  not: NestedEnumNameActionsTaskManagerEnumsFilter
+  notIn: [NameActionsTaskManagerEnums!]
+}
+
+input EnumNameActionsTaskManagerEnumsWithAggregatesFilter {
+  _count: NestedIntFilter
+  _max: NestedEnumNameActionsTaskManagerEnumsFilter
+  _min: NestedEnumNameActionsTaskManagerEnumsFilter
+  equals: NameActionsTaskManagerEnums
+  in: [NameActionsTaskManagerEnums!]
+  not: NestedEnumNameActionsTaskManagerEnumsWithAggregatesFilter
+  notIn: [NameActionsTaskManagerEnums!]
+}
+
+input EnumStateTaskTaskManagerEnumsFieldUpdateOperationsInput {
+  set: StateTaskTaskManagerEnums
+}
+
+input EnumStateTaskTaskManagerEnumsFilter {
+  equals: StateTaskTaskManagerEnums
+  in: [StateTaskTaskManagerEnums!]
+  not: NestedEnumStateTaskTaskManagerEnumsFilter
+  notIn: [StateTaskTaskManagerEnums!]
+}
+
+input EnumStateTaskTaskManagerEnumsWithAggregatesFilter {
+  _count: NestedIntFilter
+  _max: NestedEnumStateTaskTaskManagerEnumsFilter
+  _min: NestedEnumStateTaskTaskManagerEnumsFilter
+  equals: StateTaskTaskManagerEnums
+  in: [StateTaskTaskManagerEnums!]
+  not: NestedEnumStateTaskTaskManagerEnumsWithAggregatesFilter
+  notIn: [StateTaskTaskManagerEnums!]
+}
+
+input EnumTargetTypeActionTaskManagerEnumsFieldUpdateOperationsInput {
+  set: TargetTypeActionTaskManagerEnums
+}
+
+input EnumTargetTypeActionTaskManagerEnumsFilter {
+  equals: TargetTypeActionTaskManagerEnums
+  in: [TargetTypeActionTaskManagerEnums!]
+  not: NestedEnumTargetTypeActionTaskManagerEnumsFilter
+  notIn: [TargetTypeActionTaskManagerEnums!]
+}
+
+input EnumTargetTypeActionTaskManagerEnumsWithAggregatesFilter {
+  _count: NestedIntFilter
+  _max: NestedEnumTargetTypeActionTaskManagerEnumsFilter
+  _min: NestedEnumTargetTypeActionTaskManagerEnumsFilter
+  equals: TargetTypeActionTaskManagerEnums
+  in: [TargetTypeActionTaskManagerEnums!]
+  not: NestedEnumTargetTypeActionTaskManagerEnumsWithAggregatesFilter
+  notIn: [TargetTypeActionTaskManagerEnums!]
+}
+
+enum GroupActionsTaskManagerEnums {
+  admin
+  noUp
+  up
+}
+
+input IntFieldUpdateOperationsInput {
+  decrement: Int
+  divide: Int
+  increment: Int
+  multiply: Int
+  set: Int
+}
+
+input IntFilter {
+  equals: Int
+  gt: Int
+  gte: Int
+  in: [Int!]
+  lt: Int
+  lte: Int
+  not: NestedIntFilter
+  notIn: [Int!]
+}
+
+input IntWithAggregatesFilter {
+  _avg: NestedFloatFilter
+  _count: NestedIntFilter
+  _max: NestedIntFilter
+  _min: NestedIntFilter
+  _sum: NestedIntFilter
+  equals: Int
+  gt: Int
+  gte: Int
+  in: [Int!]
+  lt: Int
+  lte: Int
+  not: NestedIntWithAggregatesFilter
+  notIn: [Int!]
+}
+
 type Mutation {
+  createManyAction(data: [ActionCreateManyInput!]!, skipDuplicates: Boolean): AffectedRowsOutput!
+  createManyAssignee(data: [AssigneeCreateManyInput!]!, skipDuplicates: Boolean): AffectedRowsOutput!
+  createManyComment(data: [CommentCreateManyInput!]!, skipDuplicates: Boolean): AffectedRowsOutput!
+  createManyNotification(data: [NotificationCreateManyInput!]!, skipDuplicates: Boolean): AffectedRowsOutput!
+  createManyTask(data: [TaskCreateManyInput!]!, skipDuplicates: Boolean): AffectedRowsOutput!
   createManyUser(data: [UserCreateManyInput!]!, skipDuplicates: Boolean): AffectedRowsOutput!
+  createOneAction(data: ActionCreateInput!): Action!
+  createOneAssignee(data: AssigneeCreateInput!): Assignee!
+  createOneComment(data: CommentCreateInput!): Comment!
+  createOneNotification(data: NotificationCreateInput!): Notification!
+  createOneTask(data: TaskCreateInput!): Task!
   createOneUser(data: UserCreateInput!): User!
+  deleteManyAction(where: ActionWhereInput): AffectedRowsOutput!
+  deleteManyAssignee(where: AssigneeWhereInput): AffectedRowsOutput!
+  deleteManyComment(where: CommentWhereInput): AffectedRowsOutput!
+  deleteManyNotification(where: NotificationWhereInput): AffectedRowsOutput!
+  deleteManyTask(where: TaskWhereInput): AffectedRowsOutput!
   deleteManyUser(where: UserWhereInput): AffectedRowsOutput!
+  deleteOneAction(where: ActionWhereUniqueInput!): Action
+  deleteOneAssignee(where: AssigneeWhereUniqueInput!): Assignee
+  deleteOneComment(where: CommentWhereUniqueInput!): Comment
+  deleteOneNotification(where: NotificationWhereUniqueInput!): Notification
+  deleteOneTask(where: TaskWhereUniqueInput!): Task
   deleteOneUser(where: UserWhereUniqueInput!): User
+  updateManyAction(data: ActionUpdateManyMutationInput!, where: ActionWhereInput): AffectedRowsOutput!
+  updateManyAssignee(data: AssigneeUpdateManyMutationInput!, where: AssigneeWhereInput): AffectedRowsOutput!
+  updateManyComment(data: CommentUpdateManyMutationInput!, where: CommentWhereInput): AffectedRowsOutput!
+  updateManyNotification(data: NotificationUpdateManyMutationInput!, where: NotificationWhereInput): AffectedRowsOutput!
+  updateManyTask(data: TaskUpdateManyMutationInput!, where: TaskWhereInput): AffectedRowsOutput!
   updateManyUser(data: UserUpdateManyMutationInput!, where: UserWhereInput): AffectedRowsOutput!
+  updateOneAction(data: ActionUpdateInput!, where: ActionWhereUniqueInput!): Action
+  updateOneAssignee(data: AssigneeUpdateInput!, where: AssigneeWhereUniqueInput!): Assignee
+  updateOneComment(data: CommentUpdateInput!, where: CommentWhereUniqueInput!): Comment
+  updateOneNotification(data: NotificationUpdateInput!, where: NotificationWhereUniqueInput!): Notification
+  updateOneTask(data: TaskUpdateInput!, where: TaskWhereUniqueInput!): Task
   updateOneUser(data: UserUpdateInput!, where: UserWhereUniqueInput!): User
+  upsertOneAction(create: ActionCreateInput!, update: ActionUpdateInput!, where: ActionWhereUniqueInput!): Action!
+  upsertOneAssignee(create: AssigneeCreateInput!, update: AssigneeUpdateInput!, where: AssigneeWhereUniqueInput!): Assignee!
+  upsertOneComment(create: CommentCreateInput!, update: CommentUpdateInput!, where: CommentWhereUniqueInput!): Comment!
+  upsertOneNotification(create: NotificationCreateInput!, update: NotificationUpdateInput!, where: NotificationWhereUniqueInput!): Notification!
+  upsertOneTask(create: TaskCreateInput!, update: TaskUpdateInput!, where: TaskWhereUniqueInput!): Task!
   upsertOneUser(create: UserCreateInput!, update: UserUpdateInput!, where: UserWhereUniqueInput!): User!
+}
+
+enum NameActionsTaskManagerEnums {
+  assigTask
+  commentInAssingTask
+  deadlineNearing
+  replayToTask
+  taskEnd
+}
+
+input NestedDateTimeFilter {
+  equals: DateTime
+  gt: DateTime
+  gte: DateTime
+  in: [DateTime!]
+  lt: DateTime
+  lte: DateTime
+  not: NestedDateTimeFilter
+  notIn: [DateTime!]
+}
+
+input NestedDateTimeWithAggregatesFilter {
+  _count: NestedIntFilter
+  _max: NestedDateTimeFilter
+  _min: NestedDateTimeFilter
+  equals: DateTime
+  gt: DateTime
+  gte: DateTime
+  in: [DateTime!]
+  lt: DateTime
+  lte: DateTime
+  not: NestedDateTimeWithAggregatesFilter
+  notIn: [DateTime!]
+}
+
+input NestedEnumGroupActionsTaskManagerEnumsFilter {
+  equals: GroupActionsTaskManagerEnums
+  in: [GroupActionsTaskManagerEnums!]
+  not: NestedEnumGroupActionsTaskManagerEnumsFilter
+  notIn: [GroupActionsTaskManagerEnums!]
+}
+
+input NestedEnumGroupActionsTaskManagerEnumsWithAggregatesFilter {
+  _count: NestedIntFilter
+  _max: NestedEnumGroupActionsTaskManagerEnumsFilter
+  _min: NestedEnumGroupActionsTaskManagerEnumsFilter
+  equals: GroupActionsTaskManagerEnums
+  in: [GroupActionsTaskManagerEnums!]
+  not: NestedEnumGroupActionsTaskManagerEnumsWithAggregatesFilter
+  notIn: [GroupActionsTaskManagerEnums!]
+}
+
+input NestedEnumNameActionsTaskManagerEnumsFilter {
+  equals: NameActionsTaskManagerEnums
+  in: [NameActionsTaskManagerEnums!]
+  not: NestedEnumNameActionsTaskManagerEnumsFilter
+  notIn: [NameActionsTaskManagerEnums!]
+}
+
+input NestedEnumNameActionsTaskManagerEnumsWithAggregatesFilter {
+  _count: NestedIntFilter
+  _max: NestedEnumNameActionsTaskManagerEnumsFilter
+  _min: NestedEnumNameActionsTaskManagerEnumsFilter
+  equals: NameActionsTaskManagerEnums
+  in: [NameActionsTaskManagerEnums!]
+  not: NestedEnumNameActionsTaskManagerEnumsWithAggregatesFilter
+  notIn: [NameActionsTaskManagerEnums!]
+}
+
+input NestedEnumStateTaskTaskManagerEnumsFilter {
+  equals: StateTaskTaskManagerEnums
+  in: [StateTaskTaskManagerEnums!]
+  not: NestedEnumStateTaskTaskManagerEnumsFilter
+  notIn: [StateTaskTaskManagerEnums!]
+}
+
+input NestedEnumStateTaskTaskManagerEnumsWithAggregatesFilter {
+  _count: NestedIntFilter
+  _max: NestedEnumStateTaskTaskManagerEnumsFilter
+  _min: NestedEnumStateTaskTaskManagerEnumsFilter
+  equals: StateTaskTaskManagerEnums
+  in: [StateTaskTaskManagerEnums!]
+  not: NestedEnumStateTaskTaskManagerEnumsWithAggregatesFilter
+  notIn: [StateTaskTaskManagerEnums!]
+}
+
+input NestedEnumTargetTypeActionTaskManagerEnumsFilter {
+  equals: TargetTypeActionTaskManagerEnums
+  in: [TargetTypeActionTaskManagerEnums!]
+  not: NestedEnumTargetTypeActionTaskManagerEnumsFilter
+  notIn: [TargetTypeActionTaskManagerEnums!]
+}
+
+input NestedEnumTargetTypeActionTaskManagerEnumsWithAggregatesFilter {
+  _count: NestedIntFilter
+  _max: NestedEnumTargetTypeActionTaskManagerEnumsFilter
+  _min: NestedEnumTargetTypeActionTaskManagerEnumsFilter
+  equals: TargetTypeActionTaskManagerEnums
+  in: [TargetTypeActionTaskManagerEnums!]
+  not: NestedEnumTargetTypeActionTaskManagerEnumsWithAggregatesFilter
+  notIn: [TargetTypeActionTaskManagerEnums!]
+}
+
+input NestedFloatFilter {
+  equals: Float
+  gt: Float
+  gte: Float
+  in: [Float!]
+  lt: Float
+  lte: Float
+  not: NestedFloatFilter
+  notIn: [Float!]
 }
 
 input NestedIntFilter {
@@ -34,6 +1295,33 @@ input NestedIntFilter {
   notIn: [Int!]
 }
 
+input NestedIntNullableFilter {
+  equals: Int
+  gt: Int
+  gte: Int
+  in: [Int!]
+  lt: Int
+  lte: Int
+  not: NestedIntNullableFilter
+  notIn: [Int!]
+}
+
+input NestedIntWithAggregatesFilter {
+  _avg: NestedFloatFilter
+  _count: NestedIntFilter
+  _max: NestedIntFilter
+  _min: NestedIntFilter
+  _sum: NestedIntFilter
+  equals: Int
+  gt: Int
+  gte: Int
+  in: [Int!]
+  lt: Int
+  lte: Int
+  not: NestedIntWithAggregatesFilter
+  notIn: [Int!]
+}
+
 input NestedStringFilter {
   contains: String
   endsWith: String
@@ -44,6 +1332,37 @@ input NestedStringFilter {
   lt: String
   lte: String
   not: NestedStringFilter
+  notIn: [String!]
+  startsWith: String
+}
+
+input NestedStringNullableFilter {
+  contains: String
+  endsWith: String
+  equals: String
+  gt: String
+  gte: String
+  in: [String!]
+  lt: String
+  lte: String
+  not: NestedStringNullableFilter
+  notIn: [String!]
+  startsWith: String
+}
+
+input NestedStringNullableWithAggregatesFilter {
+  _count: NestedIntNullableFilter
+  _max: NestedStringNullableFilter
+  _min: NestedStringNullableFilter
+  contains: String
+  endsWith: String
+  equals: String
+  gt: String
+  gte: String
+  in: [String!]
+  lt: String
+  lte: String
+  not: NestedStringNullableWithAggregatesFilter
   notIn: [String!]
   startsWith: String
 }
@@ -65,12 +1384,337 @@ input NestedStringWithAggregatesFilter {
   startsWith: String
 }
 
+type Notification {
+  actionId: String!
+  id: ID!
+  readed_at: DateTime!
+  target_action: Action!
+  target_user: User!
+  userId: String!
+}
+
+type NotificationCountAggregate {
+  _all: Int!
+  actionId: Int!
+  id: Int!
+  readed_at: Int!
+  userId: Int!
+}
+
+input NotificationCountOrderByAggregateInput {
+  actionId: SortOrder
+  id: SortOrder
+  readed_at: SortOrder
+  userId: SortOrder
+}
+
+input NotificationCreateInput {
+  id: String
+  readed_at: DateTime!
+  target_action: ActionCreateNestedOneWithoutNotificationsInput!
+  target_user: UserCreateNestedOneWithoutNotificationsInput!
+}
+
+input NotificationCreateManyInput {
+  actionId: String!
+  id: String
+  readed_at: DateTime!
+  userId: String!
+}
+
+input NotificationCreateManyTarget_actionInput {
+  id: String
+  readed_at: DateTime!
+  userId: String!
+}
+
+input NotificationCreateManyTarget_actionInputEnvelope {
+  data: [NotificationCreateManyTarget_actionInput!]!
+  skipDuplicates: Boolean
+}
+
+input NotificationCreateManyTarget_userInput {
+  actionId: String!
+  id: String
+  readed_at: DateTime!
+}
+
+input NotificationCreateManyTarget_userInputEnvelope {
+  data: [NotificationCreateManyTarget_userInput!]!
+  skipDuplicates: Boolean
+}
+
+input NotificationCreateNestedManyWithoutTarget_actionInput {
+  connect: [NotificationWhereUniqueInput!]
+  connectOrCreate: [NotificationCreateOrConnectWithoutTarget_actionInput!]
+  create: [NotificationCreateWithoutTarget_actionInput!]
+  createMany: NotificationCreateManyTarget_actionInputEnvelope
+}
+
+input NotificationCreateNestedManyWithoutTarget_userInput {
+  connect: [NotificationWhereUniqueInput!]
+  connectOrCreate: [NotificationCreateOrConnectWithoutTarget_userInput!]
+  create: [NotificationCreateWithoutTarget_userInput!]
+  createMany: NotificationCreateManyTarget_userInputEnvelope
+}
+
+input NotificationCreateOrConnectWithoutTarget_actionInput {
+  create: NotificationCreateWithoutTarget_actionInput!
+  where: NotificationWhereUniqueInput!
+}
+
+input NotificationCreateOrConnectWithoutTarget_userInput {
+  create: NotificationCreateWithoutTarget_userInput!
+  where: NotificationWhereUniqueInput!
+}
+
+input NotificationCreateWithoutTarget_actionInput {
+  id: String
+  readed_at: DateTime!
+  target_user: UserCreateNestedOneWithoutNotificationsInput!
+}
+
+input NotificationCreateWithoutTarget_userInput {
+  id: String
+  readed_at: DateTime!
+  target_action: ActionCreateNestedOneWithoutNotificationsInput!
+}
+
+type NotificationGroupBy {
+  _count: NotificationCountAggregate
+  _max: NotificationMaxAggregate
+  _min: NotificationMinAggregate
+  actionId: String!
+  id: String!
+  readed_at: DateTime!
+  userId: String!
+}
+
+input NotificationListRelationFilter {
+  every: NotificationWhereInput
+  none: NotificationWhereInput
+  some: NotificationWhereInput
+}
+
+type NotificationMaxAggregate {
+  actionId: String
+  id: String
+  readed_at: DateTime
+  userId: String
+}
+
+input NotificationMaxOrderByAggregateInput {
+  actionId: SortOrder
+  id: SortOrder
+  readed_at: SortOrder
+  userId: SortOrder
+}
+
+type NotificationMinAggregate {
+  actionId: String
+  id: String
+  readed_at: DateTime
+  userId: String
+}
+
+input NotificationMinOrderByAggregateInput {
+  actionId: SortOrder
+  id: SortOrder
+  readed_at: SortOrder
+  userId: SortOrder
+}
+
+input NotificationOrderByRelationAggregateInput {
+  _count: SortOrder
+}
+
+input NotificationOrderByWithAggregationInput {
+  _count: NotificationCountOrderByAggregateInput
+  _max: NotificationMaxOrderByAggregateInput
+  _min: NotificationMinOrderByAggregateInput
+  actionId: SortOrder
+  id: SortOrder
+  readed_at: SortOrder
+  userId: SortOrder
+}
+
+input NotificationOrderByWithRelationInput {
+  actionId: SortOrder
+  id: SortOrder
+  readed_at: SortOrder
+  target_action: ActionOrderByWithRelationInput
+  target_user: UserOrderByWithRelationInput
+  userId: SortOrder
+}
+
+enum NotificationScalarFieldEnum {
+  actionId
+  id
+  readed_at
+  userId
+}
+
+input NotificationScalarWhereInput {
+  AND: [NotificationScalarWhereInput!]
+  NOT: [NotificationScalarWhereInput!]
+  OR: [NotificationScalarWhereInput!]
+  actionId: StringFilter
+  id: StringFilter
+  readed_at: DateTimeFilter
+  userId: StringFilter
+}
+
+input NotificationScalarWhereWithAggregatesInput {
+  AND: [NotificationScalarWhereWithAggregatesInput!]
+  NOT: [NotificationScalarWhereWithAggregatesInput!]
+  OR: [NotificationScalarWhereWithAggregatesInput!]
+  actionId: StringWithAggregatesFilter
+  id: StringWithAggregatesFilter
+  readed_at: DateTimeWithAggregatesFilter
+  userId: StringWithAggregatesFilter
+}
+
+input NotificationUpdateInput {
+  id: StringFieldUpdateOperationsInput
+  readed_at: DateTimeFieldUpdateOperationsInput
+  target_action: ActionUpdateOneRequiredWithoutNotificationsNestedInput
+  target_user: UserUpdateOneRequiredWithoutNotificationsNestedInput
+}
+
+input NotificationUpdateManyMutationInput {
+  id: StringFieldUpdateOperationsInput
+  readed_at: DateTimeFieldUpdateOperationsInput
+}
+
+input NotificationUpdateManyWithWhereWithoutTarget_actionInput {
+  data: NotificationUpdateManyMutationInput!
+  where: NotificationScalarWhereInput!
+}
+
+input NotificationUpdateManyWithWhereWithoutTarget_userInput {
+  data: NotificationUpdateManyMutationInput!
+  where: NotificationScalarWhereInput!
+}
+
+input NotificationUpdateManyWithoutTarget_actionNestedInput {
+  connect: [NotificationWhereUniqueInput!]
+  connectOrCreate: [NotificationCreateOrConnectWithoutTarget_actionInput!]
+  create: [NotificationCreateWithoutTarget_actionInput!]
+  createMany: NotificationCreateManyTarget_actionInputEnvelope
+  delete: [NotificationWhereUniqueInput!]
+  deleteMany: [NotificationScalarWhereInput!]
+  disconnect: [NotificationWhereUniqueInput!]
+  set: [NotificationWhereUniqueInput!]
+  update: [NotificationUpdateWithWhereUniqueWithoutTarget_actionInput!]
+  updateMany: [NotificationUpdateManyWithWhereWithoutTarget_actionInput!]
+  upsert: [NotificationUpsertWithWhereUniqueWithoutTarget_actionInput!]
+}
+
+input NotificationUpdateManyWithoutTarget_userNestedInput {
+  connect: [NotificationWhereUniqueInput!]
+  connectOrCreate: [NotificationCreateOrConnectWithoutTarget_userInput!]
+  create: [NotificationCreateWithoutTarget_userInput!]
+  createMany: NotificationCreateManyTarget_userInputEnvelope
+  delete: [NotificationWhereUniqueInput!]
+  deleteMany: [NotificationScalarWhereInput!]
+  disconnect: [NotificationWhereUniqueInput!]
+  set: [NotificationWhereUniqueInput!]
+  update: [NotificationUpdateWithWhereUniqueWithoutTarget_userInput!]
+  updateMany: [NotificationUpdateManyWithWhereWithoutTarget_userInput!]
+  upsert: [NotificationUpsertWithWhereUniqueWithoutTarget_userInput!]
+}
+
+input NotificationUpdateWithWhereUniqueWithoutTarget_actionInput {
+  data: NotificationUpdateWithoutTarget_actionInput!
+  where: NotificationWhereUniqueInput!
+}
+
+input NotificationUpdateWithWhereUniqueWithoutTarget_userInput {
+  data: NotificationUpdateWithoutTarget_userInput!
+  where: NotificationWhereUniqueInput!
+}
+
+input NotificationUpdateWithoutTarget_actionInput {
+  id: StringFieldUpdateOperationsInput
+  readed_at: DateTimeFieldUpdateOperationsInput
+  target_user: UserUpdateOneRequiredWithoutNotificationsNestedInput
+}
+
+input NotificationUpdateWithoutTarget_userInput {
+  id: StringFieldUpdateOperationsInput
+  readed_at: DateTimeFieldUpdateOperationsInput
+  target_action: ActionUpdateOneRequiredWithoutNotificationsNestedInput
+}
+
+input NotificationUpsertWithWhereUniqueWithoutTarget_actionInput {
+  create: NotificationCreateWithoutTarget_actionInput!
+  update: NotificationUpdateWithoutTarget_actionInput!
+  where: NotificationWhereUniqueInput!
+}
+
+input NotificationUpsertWithWhereUniqueWithoutTarget_userInput {
+  create: NotificationCreateWithoutTarget_userInput!
+  update: NotificationUpdateWithoutTarget_userInput!
+  where: NotificationWhereUniqueInput!
+}
+
+input NotificationWhereInput {
+  AND: [NotificationWhereInput!]
+  NOT: [NotificationWhereInput!]
+  OR: [NotificationWhereInput!]
+  actionId: StringFilter
+  id: StringFilter
+  readed_at: DateTimeFilter
+  target_action: ActionRelationFilter
+  target_user: UserRelationFilter
+  userId: StringFilter
+}
+
+input NotificationWhereUniqueInput {
+  id: String
+}
+
 type Query {
+  action(where: ActionWhereUniqueInput!): Action
+  actions(cursor: ActionWhereUniqueInput, distinct: [ActionScalarFieldEnum!], orderBy: [ActionOrderByWithRelationInput!], skip: Int, take: Int, where: ActionWhereInput): [Action!]!
+  aggregateAction(cursor: ActionWhereUniqueInput, orderBy: [ActionOrderByWithRelationInput!], skip: Int, take: Int, where: ActionWhereInput): AggregateAction!
+  aggregateAssignee(cursor: AssigneeWhereUniqueInput, orderBy: [AssigneeOrderByWithRelationInput!], skip: Int, take: Int, where: AssigneeWhereInput): AggregateAssignee!
+  aggregateComment(cursor: CommentWhereUniqueInput, orderBy: [CommentOrderByWithRelationInput!], skip: Int, take: Int, where: CommentWhereInput): AggregateComment!
+  aggregateNotification(cursor: NotificationWhereUniqueInput, orderBy: [NotificationOrderByWithRelationInput!], skip: Int, take: Int, where: NotificationWhereInput): AggregateNotification!
+  aggregateTask(cursor: TaskWhereUniqueInput, orderBy: [TaskOrderByWithRelationInput!], skip: Int, take: Int, where: TaskWhereInput): AggregateTask!
   aggregateUser(cursor: UserWhereUniqueInput, orderBy: [UserOrderByWithRelationInput!], skip: Int, take: Int, where: UserWhereInput): AggregateUser!
+  assignee(where: AssigneeWhereUniqueInput!): Assignee
+  assignees(cursor: AssigneeWhereUniqueInput, distinct: [AssigneeScalarFieldEnum!], orderBy: [AssigneeOrderByWithRelationInput!], skip: Int, take: Int, where: AssigneeWhereInput): [Assignee!]!
+  comment(where: CommentWhereUniqueInput!): Comment
+  comments(cursor: CommentWhereUniqueInput, distinct: [CommentScalarFieldEnum!], orderBy: [CommentOrderByWithRelationInput!], skip: Int, take: Int, where: CommentWhereInput): [Comment!]!
+  findFirstAction(cursor: ActionWhereUniqueInput, distinct: [ActionScalarFieldEnum!], orderBy: [ActionOrderByWithRelationInput!], skip: Int, take: Int, where: ActionWhereInput): Action
+  findFirstActionOrThrow(cursor: ActionWhereUniqueInput, distinct: [ActionScalarFieldEnum!], orderBy: [ActionOrderByWithRelationInput!], skip: Int, take: Int, where: ActionWhereInput): Action
+  findFirstAssignee(cursor: AssigneeWhereUniqueInput, distinct: [AssigneeScalarFieldEnum!], orderBy: [AssigneeOrderByWithRelationInput!], skip: Int, take: Int, where: AssigneeWhereInput): Assignee
+  findFirstAssigneeOrThrow(cursor: AssigneeWhereUniqueInput, distinct: [AssigneeScalarFieldEnum!], orderBy: [AssigneeOrderByWithRelationInput!], skip: Int, take: Int, where: AssigneeWhereInput): Assignee
+  findFirstComment(cursor: CommentWhereUniqueInput, distinct: [CommentScalarFieldEnum!], orderBy: [CommentOrderByWithRelationInput!], skip: Int, take: Int, where: CommentWhereInput): Comment
+  findFirstCommentOrThrow(cursor: CommentWhereUniqueInput, distinct: [CommentScalarFieldEnum!], orderBy: [CommentOrderByWithRelationInput!], skip: Int, take: Int, where: CommentWhereInput): Comment
+  findFirstNotification(cursor: NotificationWhereUniqueInput, distinct: [NotificationScalarFieldEnum!], orderBy: [NotificationOrderByWithRelationInput!], skip: Int, take: Int, where: NotificationWhereInput): Notification
+  findFirstNotificationOrThrow(cursor: NotificationWhereUniqueInput, distinct: [NotificationScalarFieldEnum!], orderBy: [NotificationOrderByWithRelationInput!], skip: Int, take: Int, where: NotificationWhereInput): Notification
+  findFirstTask(cursor: TaskWhereUniqueInput, distinct: [TaskScalarFieldEnum!], orderBy: [TaskOrderByWithRelationInput!], skip: Int, take: Int, where: TaskWhereInput): Task
+  findFirstTaskOrThrow(cursor: TaskWhereUniqueInput, distinct: [TaskScalarFieldEnum!], orderBy: [TaskOrderByWithRelationInput!], skip: Int, take: Int, where: TaskWhereInput): Task
   findFirstUser(cursor: UserWhereUniqueInput, distinct: [UserScalarFieldEnum!], orderBy: [UserOrderByWithRelationInput!], skip: Int, take: Int, where: UserWhereInput): User
   findFirstUserOrThrow(cursor: UserWhereUniqueInput, distinct: [UserScalarFieldEnum!], orderBy: [UserOrderByWithRelationInput!], skip: Int, take: Int, where: UserWhereInput): User
+  getAction(where: ActionWhereUniqueInput!): Action
+  getAssignee(where: AssigneeWhereUniqueInput!): Assignee
+  getComment(where: CommentWhereUniqueInput!): Comment
+  getNotification(where: NotificationWhereUniqueInput!): Notification
+  getTask(where: TaskWhereUniqueInput!): Task
   getUser(where: UserWhereUniqueInput!): User
+  groupByAction(by: [ActionScalarFieldEnum!]!, having: ActionScalarWhereWithAggregatesInput, orderBy: [ActionOrderByWithAggregationInput!], skip: Int, take: Int, where: ActionWhereInput): [ActionGroupBy!]!
+  groupByAssignee(by: [AssigneeScalarFieldEnum!]!, having: AssigneeScalarWhereWithAggregatesInput, orderBy: [AssigneeOrderByWithAggregationInput!], skip: Int, take: Int, where: AssigneeWhereInput): [AssigneeGroupBy!]!
+  groupByComment(by: [CommentScalarFieldEnum!]!, having: CommentScalarWhereWithAggregatesInput, orderBy: [CommentOrderByWithAggregationInput!], skip: Int, take: Int, where: CommentWhereInput): [CommentGroupBy!]!
+  groupByNotification(by: [NotificationScalarFieldEnum!]!, having: NotificationScalarWhereWithAggregatesInput, orderBy: [NotificationOrderByWithAggregationInput!], skip: Int, take: Int, where: NotificationWhereInput): [NotificationGroupBy!]!
+  groupByTask(by: [TaskScalarFieldEnum!]!, having: TaskScalarWhereWithAggregatesInput, orderBy: [TaskOrderByWithAggregationInput!], skip: Int, take: Int, where: TaskWhereInput): [TaskGroupBy!]!
   groupByUser(by: [UserScalarFieldEnum!]!, having: UserScalarWhereWithAggregatesInput, orderBy: [UserOrderByWithAggregationInput!], skip: Int, take: Int, where: UserWhereInput): [UserGroupBy!]!
+  notification(where: NotificationWhereUniqueInput!): Notification
+  notifications(cursor: NotificationWhereUniqueInput, distinct: [NotificationScalarFieldEnum!], orderBy: [NotificationOrderByWithRelationInput!], skip: Int, take: Int, where: NotificationWhereInput): [Notification!]!
+  task(where: TaskWhereUniqueInput!): Task
+  tasks(cursor: TaskWhereUniqueInput, distinct: [TaskScalarFieldEnum!], orderBy: [TaskOrderByWithRelationInput!], skip: Int, take: Int, where: TaskWhereInput): [Task!]!
   user(where: UserWhereUniqueInput!): User
   users(cursor: UserWhereUniqueInput, distinct: [UserScalarFieldEnum!], orderBy: [UserOrderByWithRelationInput!], skip: Int, take: Int, where: UserWhereInput): [User!]!
 }
@@ -83,6 +1727,14 @@ enum QueryMode {
 enum SortOrder {
   asc
   desc
+}
+
+enum StateTaskTaskManagerEnums {
+  assigTask
+  commentInAssingTask
+  deadlineNearing
+  replayToTask
+  taskEnd
 }
 
 input StringFieldUpdateOperationsInput {
@@ -100,6 +1752,39 @@ input StringFilter {
   lte: String
   mode: QueryMode
   not: NestedStringFilter
+  notIn: [String!]
+  startsWith: String
+}
+
+input StringNullableFilter {
+  contains: String
+  endsWith: String
+  equals: String
+  gt: String
+  gte: String
+  in: [String!]
+  lt: String
+  lte: String
+  mode: QueryMode
+  not: NestedStringNullableFilter
+  notIn: [String!]
+  startsWith: String
+}
+
+input StringNullableWithAggregatesFilter {
+  _count: NestedIntNullableFilter
+  _max: NestedStringNullableFilter
+  _min: NestedStringNullableFilter
+  contains: String
+  endsWith: String
+  equals: String
+  gt: String
+  gte: String
+  in: [String!]
+  lt: String
+  lte: String
+  mode: QueryMode
+  not: NestedStringNullableWithAggregatesFilter
   notIn: [String!]
   startsWith: String
 }
@@ -126,126 +1811,836 @@ type Subscription {
   hello: String!
 }
 
-type User {
-  email: String!
+enum TargetTypeActionTaskManagerEnums {
+  admin
+  user
+}
+
+type Task {
+  _count: TaskCount
+  assignee(cursor: AssigneeWhereUniqueInput, distinct: [AssigneeScalarFieldEnum!], orderBy: [AssigneeOrderByWithRelationInput!], skip: Int, take: Int, where: AssigneeWhereInput): [Assignee!]!
+  comments(cursor: CommentWhereUniqueInput, distinct: [CommentScalarFieldEnum!], orderBy: [CommentOrderByWithRelationInput!], skip: Int, take: Int, where: CommentWhereInput): [Comment!]!
+  created_at: DateTime!
+  description: String!
+  due_at: DateTime!
   id: ID!
+  owner: User!
+  owner_id: String!
+  state: StateTaskTaskManagerEnums!
+  title: String!
+  updated_at: DateTime!
+}
+
+type TaskCount {
+  assignee: Int!
+  comments: Int!
+}
+
+type TaskCountAggregate {
+  _all: Int!
+  created_at: Int!
+  description: Int!
+  due_at: Int!
+  id: Int!
+  owner_id: Int!
+  state: Int!
+  title: Int!
+  updated_at: Int!
+}
+
+input TaskCountOrderByAggregateInput {
+  created_at: SortOrder
+  description: SortOrder
+  due_at: SortOrder
+  id: SortOrder
+  owner_id: SortOrder
+  state: SortOrder
+  title: SortOrder
+  updated_at: SortOrder
+}
+
+input TaskCreateInput {
+  assignee: AssigneeCreateNestedManyWithoutTarget_taskInput
+  comments: CommentCreateNestedManyWithoutTargetInput
+  created_at: DateTime
+  description: String!
+  due_at: DateTime!
+  id: String
+  owner: UserCreateNestedOneWithoutTasksInput!
+  state: StateTaskTaskManagerEnums!
+  title: String!
+  updated_at: DateTime!
+}
+
+input TaskCreateManyInput {
+  created_at: DateTime
+  description: String!
+  due_at: DateTime!
+  id: String
+  owner_id: String!
+  state: StateTaskTaskManagerEnums!
+  title: String!
+  updated_at: DateTime!
+}
+
+input TaskCreateManyOwnerInput {
+  created_at: DateTime
+  description: String!
+  due_at: DateTime!
+  id: String
+  state: StateTaskTaskManagerEnums!
+  title: String!
+  updated_at: DateTime!
+}
+
+input TaskCreateManyOwnerInputEnvelope {
+  data: [TaskCreateManyOwnerInput!]!
+  skipDuplicates: Boolean
+}
+
+input TaskCreateNestedManyWithoutOwnerInput {
+  connect: [TaskWhereUniqueInput!]
+  connectOrCreate: [TaskCreateOrConnectWithoutOwnerInput!]
+  create: [TaskCreateWithoutOwnerInput!]
+  createMany: TaskCreateManyOwnerInputEnvelope
+}
+
+input TaskCreateNestedOneWithoutAssigneeInput {
+  connect: TaskWhereUniqueInput
+  connectOrCreate: TaskCreateOrConnectWithoutAssigneeInput
+  create: TaskCreateWithoutAssigneeInput
+}
+
+input TaskCreateNestedOneWithoutCommentsInput {
+  connect: TaskWhereUniqueInput
+  connectOrCreate: TaskCreateOrConnectWithoutCommentsInput
+  create: TaskCreateWithoutCommentsInput
+}
+
+input TaskCreateOrConnectWithoutAssigneeInput {
+  create: TaskCreateWithoutAssigneeInput!
+  where: TaskWhereUniqueInput!
+}
+
+input TaskCreateOrConnectWithoutCommentsInput {
+  create: TaskCreateWithoutCommentsInput!
+  where: TaskWhereUniqueInput!
+}
+
+input TaskCreateOrConnectWithoutOwnerInput {
+  create: TaskCreateWithoutOwnerInput!
+  where: TaskWhereUniqueInput!
+}
+
+input TaskCreateWithoutAssigneeInput {
+  comments: CommentCreateNestedManyWithoutTargetInput
+  created_at: DateTime
+  description: String!
+  due_at: DateTime!
+  id: String
+  owner: UserCreateNestedOneWithoutTasksInput!
+  state: StateTaskTaskManagerEnums!
+  title: String!
+  updated_at: DateTime!
+}
+
+input TaskCreateWithoutCommentsInput {
+  assignee: AssigneeCreateNestedManyWithoutTarget_taskInput
+  created_at: DateTime
+  description: String!
+  due_at: DateTime!
+  id: String
+  owner: UserCreateNestedOneWithoutTasksInput!
+  state: StateTaskTaskManagerEnums!
+  title: String!
+  updated_at: DateTime!
+}
+
+input TaskCreateWithoutOwnerInput {
+  assignee: AssigneeCreateNestedManyWithoutTarget_taskInput
+  comments: CommentCreateNestedManyWithoutTargetInput
+  created_at: DateTime
+  description: String!
+  due_at: DateTime!
+  id: String
+  state: StateTaskTaskManagerEnums!
+  title: String!
+  updated_at: DateTime!
+}
+
+type TaskGroupBy {
+  _count: TaskCountAggregate
+  _max: TaskMaxAggregate
+  _min: TaskMinAggregate
+  created_at: DateTime!
+  description: String!
+  due_at: DateTime!
+  id: String!
+  owner_id: String!
+  state: StateTaskTaskManagerEnums!
+  title: String!
+  updated_at: DateTime!
+}
+
+input TaskListRelationFilter {
+  every: TaskWhereInput
+  none: TaskWhereInput
+  some: TaskWhereInput
+}
+
+type TaskMaxAggregate {
+  created_at: DateTime
+  description: String
+  due_at: DateTime
+  id: String
+  owner_id: String
+  state: StateTaskTaskManagerEnums
+  title: String
+  updated_at: DateTime
+}
+
+input TaskMaxOrderByAggregateInput {
+  created_at: SortOrder
+  description: SortOrder
+  due_at: SortOrder
+  id: SortOrder
+  owner_id: SortOrder
+  state: SortOrder
+  title: SortOrder
+  updated_at: SortOrder
+}
+
+type TaskMinAggregate {
+  created_at: DateTime
+  description: String
+  due_at: DateTime
+  id: String
+  owner_id: String
+  state: StateTaskTaskManagerEnums
+  title: String
+  updated_at: DateTime
+}
+
+input TaskMinOrderByAggregateInput {
+  created_at: SortOrder
+  description: SortOrder
+  due_at: SortOrder
+  id: SortOrder
+  owner_id: SortOrder
+  state: SortOrder
+  title: SortOrder
+  updated_at: SortOrder
+}
+
+input TaskOrderByRelationAggregateInput {
+  _count: SortOrder
+}
+
+input TaskOrderByWithAggregationInput {
+  _count: TaskCountOrderByAggregateInput
+  _max: TaskMaxOrderByAggregateInput
+  _min: TaskMinOrderByAggregateInput
+  created_at: SortOrder
+  description: SortOrder
+  due_at: SortOrder
+  id: SortOrder
+  owner_id: SortOrder
+  state: SortOrder
+  title: SortOrder
+  updated_at: SortOrder
+}
+
+input TaskOrderByWithRelationInput {
+  assignee: AssigneeOrderByRelationAggregateInput
+  comments: CommentOrderByRelationAggregateInput
+  created_at: SortOrder
+  description: SortOrder
+  due_at: SortOrder
+  id: SortOrder
+  owner: UserOrderByWithRelationInput
+  owner_id: SortOrder
+  state: SortOrder
+  title: SortOrder
+  updated_at: SortOrder
+}
+
+input TaskRelationFilter {
+  is: TaskWhereInput
+  isNot: TaskWhereInput
+}
+
+enum TaskScalarFieldEnum {
+  created_at
+  description
+  due_at
+  id
+  owner_id
+  state
+  title
+  updated_at
+}
+
+input TaskScalarWhereInput {
+  AND: [TaskScalarWhereInput!]
+  NOT: [TaskScalarWhereInput!]
+  OR: [TaskScalarWhereInput!]
+  created_at: DateTimeFilter
+  description: StringFilter
+  due_at: DateTimeFilter
+  id: StringFilter
+  owner_id: StringFilter
+  state: EnumStateTaskTaskManagerEnumsFilter
+  title: StringFilter
+  updated_at: DateTimeFilter
+}
+
+input TaskScalarWhereWithAggregatesInput {
+  AND: [TaskScalarWhereWithAggregatesInput!]
+  NOT: [TaskScalarWhereWithAggregatesInput!]
+  OR: [TaskScalarWhereWithAggregatesInput!]
+  created_at: DateTimeWithAggregatesFilter
+  description: StringWithAggregatesFilter
+  due_at: DateTimeWithAggregatesFilter
+  id: StringWithAggregatesFilter
+  owner_id: StringWithAggregatesFilter
+  state: EnumStateTaskTaskManagerEnumsWithAggregatesFilter
+  title: StringWithAggregatesFilter
+  updated_at: DateTimeWithAggregatesFilter
+}
+
+input TaskUpdateInput {
+  assignee: AssigneeUpdateManyWithoutTarget_taskNestedInput
+  comments: CommentUpdateManyWithoutTargetNestedInput
+  created_at: DateTimeFieldUpdateOperationsInput
+  description: StringFieldUpdateOperationsInput
+  due_at: DateTimeFieldUpdateOperationsInput
+  id: StringFieldUpdateOperationsInput
+  owner: UserUpdateOneRequiredWithoutTasksNestedInput
+  state: EnumStateTaskTaskManagerEnumsFieldUpdateOperationsInput
+  title: StringFieldUpdateOperationsInput
+  updated_at: DateTimeFieldUpdateOperationsInput
+}
+
+input TaskUpdateManyMutationInput {
+  created_at: DateTimeFieldUpdateOperationsInput
+  description: StringFieldUpdateOperationsInput
+  due_at: DateTimeFieldUpdateOperationsInput
+  id: StringFieldUpdateOperationsInput
+  state: EnumStateTaskTaskManagerEnumsFieldUpdateOperationsInput
+  title: StringFieldUpdateOperationsInput
+  updated_at: DateTimeFieldUpdateOperationsInput
+}
+
+input TaskUpdateManyWithWhereWithoutOwnerInput {
+  data: TaskUpdateManyMutationInput!
+  where: TaskScalarWhereInput!
+}
+
+input TaskUpdateManyWithoutOwnerNestedInput {
+  connect: [TaskWhereUniqueInput!]
+  connectOrCreate: [TaskCreateOrConnectWithoutOwnerInput!]
+  create: [TaskCreateWithoutOwnerInput!]
+  createMany: TaskCreateManyOwnerInputEnvelope
+  delete: [TaskWhereUniqueInput!]
+  deleteMany: [TaskScalarWhereInput!]
+  disconnect: [TaskWhereUniqueInput!]
+  set: [TaskWhereUniqueInput!]
+  update: [TaskUpdateWithWhereUniqueWithoutOwnerInput!]
+  updateMany: [TaskUpdateManyWithWhereWithoutOwnerInput!]
+  upsert: [TaskUpsertWithWhereUniqueWithoutOwnerInput!]
+}
+
+input TaskUpdateOneRequiredWithoutAssigneeNestedInput {
+  connect: TaskWhereUniqueInput
+  connectOrCreate: TaskCreateOrConnectWithoutAssigneeInput
+  create: TaskCreateWithoutAssigneeInput
+  update: TaskUpdateWithoutAssigneeInput
+  upsert: TaskUpsertWithoutAssigneeInput
+}
+
+input TaskUpdateOneRequiredWithoutCommentsNestedInput {
+  connect: TaskWhereUniqueInput
+  connectOrCreate: TaskCreateOrConnectWithoutCommentsInput
+  create: TaskCreateWithoutCommentsInput
+  update: TaskUpdateWithoutCommentsInput
+  upsert: TaskUpsertWithoutCommentsInput
+}
+
+input TaskUpdateWithWhereUniqueWithoutOwnerInput {
+  data: TaskUpdateWithoutOwnerInput!
+  where: TaskWhereUniqueInput!
+}
+
+input TaskUpdateWithoutAssigneeInput {
+  comments: CommentUpdateManyWithoutTargetNestedInput
+  created_at: DateTimeFieldUpdateOperationsInput
+  description: StringFieldUpdateOperationsInput
+  due_at: DateTimeFieldUpdateOperationsInput
+  id: StringFieldUpdateOperationsInput
+  owner: UserUpdateOneRequiredWithoutTasksNestedInput
+  state: EnumStateTaskTaskManagerEnumsFieldUpdateOperationsInput
+  title: StringFieldUpdateOperationsInput
+  updated_at: DateTimeFieldUpdateOperationsInput
+}
+
+input TaskUpdateWithoutCommentsInput {
+  assignee: AssigneeUpdateManyWithoutTarget_taskNestedInput
+  created_at: DateTimeFieldUpdateOperationsInput
+  description: StringFieldUpdateOperationsInput
+  due_at: DateTimeFieldUpdateOperationsInput
+  id: StringFieldUpdateOperationsInput
+  owner: UserUpdateOneRequiredWithoutTasksNestedInput
+  state: EnumStateTaskTaskManagerEnumsFieldUpdateOperationsInput
+  title: StringFieldUpdateOperationsInput
+  updated_at: DateTimeFieldUpdateOperationsInput
+}
+
+input TaskUpdateWithoutOwnerInput {
+  assignee: AssigneeUpdateManyWithoutTarget_taskNestedInput
+  comments: CommentUpdateManyWithoutTargetNestedInput
+  created_at: DateTimeFieldUpdateOperationsInput
+  description: StringFieldUpdateOperationsInput
+  due_at: DateTimeFieldUpdateOperationsInput
+  id: StringFieldUpdateOperationsInput
+  state: EnumStateTaskTaskManagerEnumsFieldUpdateOperationsInput
+  title: StringFieldUpdateOperationsInput
+  updated_at: DateTimeFieldUpdateOperationsInput
+}
+
+input TaskUpsertWithWhereUniqueWithoutOwnerInput {
+  create: TaskCreateWithoutOwnerInput!
+  update: TaskUpdateWithoutOwnerInput!
+  where: TaskWhereUniqueInput!
+}
+
+input TaskUpsertWithoutAssigneeInput {
+  create: TaskCreateWithoutAssigneeInput!
+  update: TaskUpdateWithoutAssigneeInput!
+}
+
+input TaskUpsertWithoutCommentsInput {
+  create: TaskCreateWithoutCommentsInput!
+  update: TaskUpdateWithoutCommentsInput!
+}
+
+input TaskWhereInput {
+  AND: [TaskWhereInput!]
+  NOT: [TaskWhereInput!]
+  OR: [TaskWhereInput!]
+  assignee: AssigneeListRelationFilter
+  comments: CommentListRelationFilter
+  created_at: DateTimeFilter
+  description: StringFilter
+  due_at: DateTimeFilter
+  id: StringFilter
+  owner: UserRelationFilter
+  owner_id: StringFilter
+  state: EnumStateTaskTaskManagerEnumsFilter
+  title: StringFilter
+  updated_at: DateTimeFilter
+}
+
+input TaskWhereUniqueInput {
+  id: String
+}
+
+type User {
+  _count: UserCount
+  assignees(cursor: AssigneeWhereUniqueInput, distinct: [AssigneeScalarFieldEnum!], orderBy: [AssigneeOrderByWithRelationInput!], skip: Int, take: Int, where: AssigneeWhereInput): [Assignee!]!
+  comments(cursor: CommentWhereUniqueInput, distinct: [CommentScalarFieldEnum!], orderBy: [CommentOrderByWithRelationInput!], skip: Int, take: Int, where: CommentWhereInput): [Comment!]!
+  created_at: DateTime!
+  id: ID!
+  last_sign_in_at: DateTime!
+  name: String!
+  notifications(cursor: NotificationWhereUniqueInput, distinct: [NotificationScalarFieldEnum!], orderBy: [NotificationOrderByWithRelationInput!], skip: Int, take: Int, where: NotificationWhereInput): [Notification!]!
+  tasks(cursor: TaskWhereUniqueInput, distinct: [TaskScalarFieldEnum!], orderBy: [TaskOrderByWithRelationInput!], skip: Int, take: Int, where: TaskWhereInput): [Task!]!
+  update_at: DateTime!
+}
+
+type UserCount {
+  assignees: Int!
+  comments: Int!
+  notifications: Int!
+  tasks: Int!
 }
 
 type UserCountAggregate {
   _all: Int!
-  email: Int!
+  created_at: Int!
   id: Int!
+  last_sign_in_at: Int!
+  name: Int!
   password: Int!
   password_digest: Int!
+  update_at: Int!
 }
 
 input UserCountOrderByAggregateInput {
-  email: SortOrder
+  created_at: SortOrder
   id: SortOrder
+  last_sign_in_at: SortOrder
+  name: SortOrder
   password: SortOrder
+  update_at: SortOrder
 }
 
 input UserCreateInput {
-  email: String!
+  assignees: AssigneeCreateNestedManyWithoutTarget_userInput
+  comments: CommentCreateNestedManyWithoutOwnerInput
+  created_at: DateTime!
   id: String
+  last_sign_in_at: DateTime!
+  name: String!
+  notifications: NotificationCreateNestedManyWithoutTarget_userInput
   password: String!
+  tasks: TaskCreateNestedManyWithoutOwnerInput
+  update_at: DateTime!
 }
 
 input UserCreateManyInput {
-  email: String!
+  created_at: DateTime!
   id: String
+  last_sign_in_at: DateTime!
+  name: String!
   password: String!
+  update_at: DateTime!
+}
+
+input UserCreateNestedOneWithoutAssigneesInput {
+  connect: UserWhereUniqueInput
+  connectOrCreate: UserCreateOrConnectWithoutAssigneesInput
+  create: UserCreateWithoutAssigneesInput
+}
+
+input UserCreateNestedOneWithoutCommentsInput {
+  connect: UserWhereUniqueInput
+  connectOrCreate: UserCreateOrConnectWithoutCommentsInput
+  create: UserCreateWithoutCommentsInput
+}
+
+input UserCreateNestedOneWithoutNotificationsInput {
+  connect: UserWhereUniqueInput
+  connectOrCreate: UserCreateOrConnectWithoutNotificationsInput
+  create: UserCreateWithoutNotificationsInput
+}
+
+input UserCreateNestedOneWithoutTasksInput {
+  connect: UserWhereUniqueInput
+  connectOrCreate: UserCreateOrConnectWithoutTasksInput
+  create: UserCreateWithoutTasksInput
+}
+
+input UserCreateOrConnectWithoutAssigneesInput {
+  create: UserCreateWithoutAssigneesInput!
+  where: UserWhereUniqueInput!
+}
+
+input UserCreateOrConnectWithoutCommentsInput {
+  create: UserCreateWithoutCommentsInput!
+  where: UserWhereUniqueInput!
+}
+
+input UserCreateOrConnectWithoutNotificationsInput {
+  create: UserCreateWithoutNotificationsInput!
+  where: UserWhereUniqueInput!
+}
+
+input UserCreateOrConnectWithoutTasksInput {
+  create: UserCreateWithoutTasksInput!
+  where: UserWhereUniqueInput!
+}
+
+input UserCreateWithoutAssigneesInput {
+  comments: CommentCreateNestedManyWithoutOwnerInput
+  created_at: DateTime!
+  id: String
+  last_sign_in_at: DateTime!
+  name: String!
+  notifications: NotificationCreateNestedManyWithoutTarget_userInput
+  password: String!
+  tasks: TaskCreateNestedManyWithoutOwnerInput
+  update_at: DateTime!
+}
+
+input UserCreateWithoutCommentsInput {
+  assignees: AssigneeCreateNestedManyWithoutTarget_userInput
+  created_at: DateTime!
+  id: String
+  last_sign_in_at: DateTime!
+  name: String!
+  notifications: NotificationCreateNestedManyWithoutTarget_userInput
+  password: String!
+  tasks: TaskCreateNestedManyWithoutOwnerInput
+  update_at: DateTime!
+}
+
+input UserCreateWithoutNotificationsInput {
+  assignees: AssigneeCreateNestedManyWithoutTarget_userInput
+  comments: CommentCreateNestedManyWithoutOwnerInput
+  created_at: DateTime!
+  id: String
+  last_sign_in_at: DateTime!
+  name: String!
+  password: String!
+  tasks: TaskCreateNestedManyWithoutOwnerInput
+  update_at: DateTime!
+}
+
+input UserCreateWithoutTasksInput {
+  assignees: AssigneeCreateNestedManyWithoutTarget_userInput
+  comments: CommentCreateNestedManyWithoutOwnerInput
+  created_at: DateTime!
+  id: String
+  last_sign_in_at: DateTime!
+  name: String!
+  notifications: NotificationCreateNestedManyWithoutTarget_userInput
+  password: String!
+  update_at: DateTime!
 }
 
 type UserGroupBy {
   _count: UserCountAggregate
   _max: UserMaxAggregate
   _min: UserMinAggregate
-  email: String!
+  created_at: DateTime!
   id: String!
+  last_sign_in_at: DateTime!
+  name: String!
   password: String!
   password_digest: String!
+  update_at: DateTime!
 }
 
 type UserMaxAggregate {
-  email: String
+  created_at: DateTime
   id: String
+  last_sign_in_at: DateTime
+  name: String
   password: String
   password_digest: String
+  update_at: DateTime
 }
 
 input UserMaxOrderByAggregateInput {
-  email: SortOrder
+  created_at: SortOrder
   id: SortOrder
+  last_sign_in_at: SortOrder
+  name: SortOrder
   password: SortOrder
+  update_at: SortOrder
 }
 
 type UserMinAggregate {
-  email: String
+  created_at: DateTime
   id: String
+  last_sign_in_at: DateTime
+  name: String
   password: String
   password_digest: String
+  update_at: DateTime
 }
 
 input UserMinOrderByAggregateInput {
-  email: SortOrder
+  created_at: SortOrder
   id: SortOrder
+  last_sign_in_at: SortOrder
+  name: SortOrder
   password: SortOrder
+  update_at: SortOrder
 }
 
 input UserOrderByWithAggregationInput {
   _count: UserCountOrderByAggregateInput
   _max: UserMaxOrderByAggregateInput
   _min: UserMinOrderByAggregateInput
-  email: SortOrder
+  created_at: SortOrder
   id: SortOrder
+  last_sign_in_at: SortOrder
+  name: SortOrder
   password: SortOrder
+  update_at: SortOrder
 }
 
 input UserOrderByWithRelationInput {
-  email: SortOrder
+  assignees: AssigneeOrderByRelationAggregateInput
+  comments: CommentOrderByRelationAggregateInput
+  created_at: SortOrder
   id: SortOrder
+  last_sign_in_at: SortOrder
+  name: SortOrder
+  notifications: NotificationOrderByRelationAggregateInput
   password: SortOrder
+  tasks: TaskOrderByRelationAggregateInput
+  update_at: SortOrder
+}
+
+input UserRelationFilter {
+  is: UserWhereInput
+  isNot: UserWhereInput
 }
 
 enum UserScalarFieldEnum {
-  email
+  created_at
   id
+  last_sign_in_at
+  name
   password
   password_digest
+  update_at
 }
 
 input UserScalarWhereWithAggregatesInput {
   AND: [UserScalarWhereWithAggregatesInput!]
   NOT: [UserScalarWhereWithAggregatesInput!]
   OR: [UserScalarWhereWithAggregatesInput!]
-  email: StringWithAggregatesFilter
+  created_at: DateTimeWithAggregatesFilter
   id: StringWithAggregatesFilter
+  last_sign_in_at: DateTimeWithAggregatesFilter
+  name: StringWithAggregatesFilter
   password: StringWithAggregatesFilter
+  update_at: DateTimeWithAggregatesFilter
 }
 
 input UserUpdateInput {
-  email: StringFieldUpdateOperationsInput
+  assignees: AssigneeUpdateManyWithoutTarget_userNestedInput
+  comments: CommentUpdateManyWithoutOwnerNestedInput
+  created_at: DateTimeFieldUpdateOperationsInput
   id: StringFieldUpdateOperationsInput
+  last_sign_in_at: DateTimeFieldUpdateOperationsInput
+  name: StringFieldUpdateOperationsInput
+  notifications: NotificationUpdateManyWithoutTarget_userNestedInput
   password: StringFieldUpdateOperationsInput
+  tasks: TaskUpdateManyWithoutOwnerNestedInput
+  update_at: DateTimeFieldUpdateOperationsInput
 }
 
 input UserUpdateManyMutationInput {
-  email: StringFieldUpdateOperationsInput
+  created_at: DateTimeFieldUpdateOperationsInput
   id: StringFieldUpdateOperationsInput
+  last_sign_in_at: DateTimeFieldUpdateOperationsInput
+  name: StringFieldUpdateOperationsInput
   password: StringFieldUpdateOperationsInput
+  update_at: DateTimeFieldUpdateOperationsInput
+}
+
+input UserUpdateOneRequiredWithoutAssigneesNestedInput {
+  connect: UserWhereUniqueInput
+  connectOrCreate: UserCreateOrConnectWithoutAssigneesInput
+  create: UserCreateWithoutAssigneesInput
+  update: UserUpdateWithoutAssigneesInput
+  upsert: UserUpsertWithoutAssigneesInput
+}
+
+input UserUpdateOneRequiredWithoutNotificationsNestedInput {
+  connect: UserWhereUniqueInput
+  connectOrCreate: UserCreateOrConnectWithoutNotificationsInput
+  create: UserCreateWithoutNotificationsInput
+  update: UserUpdateWithoutNotificationsInput
+  upsert: UserUpsertWithoutNotificationsInput
+}
+
+input UserUpdateOneRequiredWithoutTasksNestedInput {
+  connect: UserWhereUniqueInput
+  connectOrCreate: UserCreateOrConnectWithoutTasksInput
+  create: UserCreateWithoutTasksInput
+  update: UserUpdateWithoutTasksInput
+  upsert: UserUpsertWithoutTasksInput
+}
+
+input UserUpdateOneWithoutCommentsNestedInput {
+  connect: UserWhereUniqueInput
+  connectOrCreate: UserCreateOrConnectWithoutCommentsInput
+  create: UserCreateWithoutCommentsInput
+  delete: Boolean
+  disconnect: Boolean
+  update: UserUpdateWithoutCommentsInput
+  upsert: UserUpsertWithoutCommentsInput
+}
+
+input UserUpdateWithoutAssigneesInput {
+  comments: CommentUpdateManyWithoutOwnerNestedInput
+  created_at: DateTimeFieldUpdateOperationsInput
+  id: StringFieldUpdateOperationsInput
+  last_sign_in_at: DateTimeFieldUpdateOperationsInput
+  name: StringFieldUpdateOperationsInput
+  notifications: NotificationUpdateManyWithoutTarget_userNestedInput
+  password: StringFieldUpdateOperationsInput
+  tasks: TaskUpdateManyWithoutOwnerNestedInput
+  update_at: DateTimeFieldUpdateOperationsInput
+}
+
+input UserUpdateWithoutCommentsInput {
+  assignees: AssigneeUpdateManyWithoutTarget_userNestedInput
+  created_at: DateTimeFieldUpdateOperationsInput
+  id: StringFieldUpdateOperationsInput
+  last_sign_in_at: DateTimeFieldUpdateOperationsInput
+  name: StringFieldUpdateOperationsInput
+  notifications: NotificationUpdateManyWithoutTarget_userNestedInput
+  password: StringFieldUpdateOperationsInput
+  tasks: TaskUpdateManyWithoutOwnerNestedInput
+  update_at: DateTimeFieldUpdateOperationsInput
+}
+
+input UserUpdateWithoutNotificationsInput {
+  assignees: AssigneeUpdateManyWithoutTarget_userNestedInput
+  comments: CommentUpdateManyWithoutOwnerNestedInput
+  created_at: DateTimeFieldUpdateOperationsInput
+  id: StringFieldUpdateOperationsInput
+  last_sign_in_at: DateTimeFieldUpdateOperationsInput
+  name: StringFieldUpdateOperationsInput
+  password: StringFieldUpdateOperationsInput
+  tasks: TaskUpdateManyWithoutOwnerNestedInput
+  update_at: DateTimeFieldUpdateOperationsInput
+}
+
+input UserUpdateWithoutTasksInput {
+  assignees: AssigneeUpdateManyWithoutTarget_userNestedInput
+  comments: CommentUpdateManyWithoutOwnerNestedInput
+  created_at: DateTimeFieldUpdateOperationsInput
+  id: StringFieldUpdateOperationsInput
+  last_sign_in_at: DateTimeFieldUpdateOperationsInput
+  name: StringFieldUpdateOperationsInput
+  notifications: NotificationUpdateManyWithoutTarget_userNestedInput
+  password: StringFieldUpdateOperationsInput
+  update_at: DateTimeFieldUpdateOperationsInput
+}
+
+input UserUpsertWithoutAssigneesInput {
+  create: UserCreateWithoutAssigneesInput!
+  update: UserUpdateWithoutAssigneesInput!
+}
+
+input UserUpsertWithoutCommentsInput {
+  create: UserCreateWithoutCommentsInput!
+  update: UserUpdateWithoutCommentsInput!
+}
+
+input UserUpsertWithoutNotificationsInput {
+  create: UserCreateWithoutNotificationsInput!
+  update: UserUpdateWithoutNotificationsInput!
+}
+
+input UserUpsertWithoutTasksInput {
+  create: UserCreateWithoutTasksInput!
+  update: UserUpdateWithoutTasksInput!
 }
 
 input UserWhereInput {
   AND: [UserWhereInput!]
   NOT: [UserWhereInput!]
   OR: [UserWhereInput!]
-  email: StringFilter
+  assignees: AssigneeListRelationFilter
+  comments: CommentListRelationFilter
+  created_at: DateTimeFilter
   id: StringFilter
+  last_sign_in_at: DateTimeFilter
+  name: StringFilter
+  notifications: NotificationListRelationFilter
   password: StringFilter
+  tasks: TaskListRelationFilter
+  update_at: DateTimeFilter
 }
 
 input UserWhereUniqueInput {
-  email: String
   id: String
 }

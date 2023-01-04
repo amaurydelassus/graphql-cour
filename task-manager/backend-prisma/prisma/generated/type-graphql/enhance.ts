@@ -3,12 +3,18 @@ import * as tslib from "tslib";
 import * as crudResolvers from "./resolvers/crud/resolvers-crud.index";
 import * as argsTypes from "./resolvers/crud/args.index";
 import * as actionResolvers from "./resolvers/crud/resolvers-actions.index";
+import * as relationResolvers from "./resolvers/relations/resolvers.index";
 import * as models from "./models";
 import * as outputTypes from "./resolvers/outputs";
 import * as inputTypes from "./resolvers/inputs";
 
 const crudResolversMap = {
-  User: crudResolvers.UserCrudResolver
+  User: crudResolvers.UserCrudResolver,
+  Notification: crudResolvers.NotificationCrudResolver,
+  Assignee: crudResolvers.AssigneeCrudResolver,
+  Action: crudResolvers.ActionCrudResolver,
+  Comment: crudResolvers.CommentCrudResolver,
+  Task: crudResolvers.TaskCrudResolver
 };
 const actionResolversMap = {
   User: {
@@ -26,10 +32,95 @@ const actionResolversMap = {
     updateManyUser: actionResolvers.UpdateManyUserResolver,
     updateOneUser: actionResolvers.UpdateOneUserResolver,
     upsertOneUser: actionResolvers.UpsertOneUserResolver
+  },
+  Notification: {
+    aggregateNotification: actionResolvers.AggregateNotificationResolver,
+    createManyNotification: actionResolvers.CreateManyNotificationResolver,
+    createOneNotification: actionResolvers.CreateOneNotificationResolver,
+    deleteManyNotification: actionResolvers.DeleteManyNotificationResolver,
+    deleteOneNotification: actionResolvers.DeleteOneNotificationResolver,
+    findFirstNotification: actionResolvers.FindFirstNotificationResolver,
+    findFirstNotificationOrThrow: actionResolvers.FindFirstNotificationOrThrowResolver,
+    notifications: actionResolvers.FindManyNotificationResolver,
+    notification: actionResolvers.FindUniqueNotificationResolver,
+    getNotification: actionResolvers.FindUniqueNotificationOrThrowResolver,
+    groupByNotification: actionResolvers.GroupByNotificationResolver,
+    updateManyNotification: actionResolvers.UpdateManyNotificationResolver,
+    updateOneNotification: actionResolvers.UpdateOneNotificationResolver,
+    upsertOneNotification: actionResolvers.UpsertOneNotificationResolver
+  },
+  Assignee: {
+    aggregateAssignee: actionResolvers.AggregateAssigneeResolver,
+    createManyAssignee: actionResolvers.CreateManyAssigneeResolver,
+    createOneAssignee: actionResolvers.CreateOneAssigneeResolver,
+    deleteManyAssignee: actionResolvers.DeleteManyAssigneeResolver,
+    deleteOneAssignee: actionResolvers.DeleteOneAssigneeResolver,
+    findFirstAssignee: actionResolvers.FindFirstAssigneeResolver,
+    findFirstAssigneeOrThrow: actionResolvers.FindFirstAssigneeOrThrowResolver,
+    assignees: actionResolvers.FindManyAssigneeResolver,
+    assignee: actionResolvers.FindUniqueAssigneeResolver,
+    getAssignee: actionResolvers.FindUniqueAssigneeOrThrowResolver,
+    groupByAssignee: actionResolvers.GroupByAssigneeResolver,
+    updateManyAssignee: actionResolvers.UpdateManyAssigneeResolver,
+    updateOneAssignee: actionResolvers.UpdateOneAssigneeResolver,
+    upsertOneAssignee: actionResolvers.UpsertOneAssigneeResolver
+  },
+  Action: {
+    aggregateAction: actionResolvers.AggregateActionResolver,
+    createManyAction: actionResolvers.CreateManyActionResolver,
+    createOneAction: actionResolvers.CreateOneActionResolver,
+    deleteManyAction: actionResolvers.DeleteManyActionResolver,
+    deleteOneAction: actionResolvers.DeleteOneActionResolver,
+    findFirstAction: actionResolvers.FindFirstActionResolver,
+    findFirstActionOrThrow: actionResolvers.FindFirstActionOrThrowResolver,
+    actions: actionResolvers.FindManyActionResolver,
+    action: actionResolvers.FindUniqueActionResolver,
+    getAction: actionResolvers.FindUniqueActionOrThrowResolver,
+    groupByAction: actionResolvers.GroupByActionResolver,
+    updateManyAction: actionResolvers.UpdateManyActionResolver,
+    updateOneAction: actionResolvers.UpdateOneActionResolver,
+    upsertOneAction: actionResolvers.UpsertOneActionResolver
+  },
+  Comment: {
+    aggregateComment: actionResolvers.AggregateCommentResolver,
+    createManyComment: actionResolvers.CreateManyCommentResolver,
+    createOneComment: actionResolvers.CreateOneCommentResolver,
+    deleteManyComment: actionResolvers.DeleteManyCommentResolver,
+    deleteOneComment: actionResolvers.DeleteOneCommentResolver,
+    findFirstComment: actionResolvers.FindFirstCommentResolver,
+    findFirstCommentOrThrow: actionResolvers.FindFirstCommentOrThrowResolver,
+    comments: actionResolvers.FindManyCommentResolver,
+    comment: actionResolvers.FindUniqueCommentResolver,
+    getComment: actionResolvers.FindUniqueCommentOrThrowResolver,
+    groupByComment: actionResolvers.GroupByCommentResolver,
+    updateManyComment: actionResolvers.UpdateManyCommentResolver,
+    updateOneComment: actionResolvers.UpdateOneCommentResolver,
+    upsertOneComment: actionResolvers.UpsertOneCommentResolver
+  },
+  Task: {
+    aggregateTask: actionResolvers.AggregateTaskResolver,
+    createManyTask: actionResolvers.CreateManyTaskResolver,
+    createOneTask: actionResolvers.CreateOneTaskResolver,
+    deleteManyTask: actionResolvers.DeleteManyTaskResolver,
+    deleteOneTask: actionResolvers.DeleteOneTaskResolver,
+    findFirstTask: actionResolvers.FindFirstTaskResolver,
+    findFirstTaskOrThrow: actionResolvers.FindFirstTaskOrThrowResolver,
+    tasks: actionResolvers.FindManyTaskResolver,
+    task: actionResolvers.FindUniqueTaskResolver,
+    getTask: actionResolvers.FindUniqueTaskOrThrowResolver,
+    groupByTask: actionResolvers.GroupByTaskResolver,
+    updateManyTask: actionResolvers.UpdateManyTaskResolver,
+    updateOneTask: actionResolvers.UpdateOneTaskResolver,
+    upsertOneTask: actionResolvers.UpsertOneTaskResolver
   }
 };
 const crudResolversInfo = {
-  User: ["aggregateUser", "createManyUser", "createOneUser", "deleteManyUser", "deleteOneUser", "findFirstUser", "findFirstUserOrThrow", "users", "user", "getUser", "groupByUser", "updateManyUser", "updateOneUser", "upsertOneUser"]
+  User: ["aggregateUser", "createManyUser", "createOneUser", "deleteManyUser", "deleteOneUser", "findFirstUser", "findFirstUserOrThrow", "users", "user", "getUser", "groupByUser", "updateManyUser", "updateOneUser", "upsertOneUser"],
+  Notification: ["aggregateNotification", "createManyNotification", "createOneNotification", "deleteManyNotification", "deleteOneNotification", "findFirstNotification", "findFirstNotificationOrThrow", "notifications", "notification", "getNotification", "groupByNotification", "updateManyNotification", "updateOneNotification", "upsertOneNotification"],
+  Assignee: ["aggregateAssignee", "createManyAssignee", "createOneAssignee", "deleteManyAssignee", "deleteOneAssignee", "findFirstAssignee", "findFirstAssigneeOrThrow", "assignees", "assignee", "getAssignee", "groupByAssignee", "updateManyAssignee", "updateOneAssignee", "upsertOneAssignee"],
+  Action: ["aggregateAction", "createManyAction", "createOneAction", "deleteManyAction", "deleteOneAction", "findFirstAction", "findFirstActionOrThrow", "actions", "action", "getAction", "groupByAction", "updateManyAction", "updateOneAction", "upsertOneAction"],
+  Comment: ["aggregateComment", "createManyComment", "createOneComment", "deleteManyComment", "deleteOneComment", "findFirstComment", "findFirstCommentOrThrow", "comments", "comment", "getComment", "groupByComment", "updateManyComment", "updateOneComment", "upsertOneComment"],
+  Task: ["aggregateTask", "createManyTask", "createOneTask", "deleteManyTask", "deleteOneTask", "findFirstTask", "findFirstTaskOrThrow", "tasks", "task", "getTask", "groupByTask", "updateManyTask", "updateOneTask", "upsertOneTask"]
 };
 const argsInfo = {
   AggregateUserArgs: ["where", "orderBy", "cursor", "take", "skip"],
@@ -45,7 +136,77 @@ const argsInfo = {
   GroupByUserArgs: ["where", "orderBy", "by", "having", "take", "skip"],
   UpdateManyUserArgs: ["data", "where"],
   UpdateOneUserArgs: ["data", "where"],
-  UpsertOneUserArgs: ["where", "create", "update"]
+  UpsertOneUserArgs: ["where", "create", "update"],
+  AggregateNotificationArgs: ["where", "orderBy", "cursor", "take", "skip"],
+  CreateManyNotificationArgs: ["data", "skipDuplicates"],
+  CreateOneNotificationArgs: ["data"],
+  DeleteManyNotificationArgs: ["where"],
+  DeleteOneNotificationArgs: ["where"],
+  FindFirstNotificationArgs: ["where", "orderBy", "cursor", "take", "skip", "distinct"],
+  FindFirstNotificationOrThrowArgs: ["where", "orderBy", "cursor", "take", "skip", "distinct"],
+  FindManyNotificationArgs: ["where", "orderBy", "cursor", "take", "skip", "distinct"],
+  FindUniqueNotificationArgs: ["where"],
+  FindUniqueNotificationOrThrowArgs: ["where"],
+  GroupByNotificationArgs: ["where", "orderBy", "by", "having", "take", "skip"],
+  UpdateManyNotificationArgs: ["data", "where"],
+  UpdateOneNotificationArgs: ["data", "where"],
+  UpsertOneNotificationArgs: ["where", "create", "update"],
+  AggregateAssigneeArgs: ["where", "orderBy", "cursor", "take", "skip"],
+  CreateManyAssigneeArgs: ["data", "skipDuplicates"],
+  CreateOneAssigneeArgs: ["data"],
+  DeleteManyAssigneeArgs: ["where"],
+  DeleteOneAssigneeArgs: ["where"],
+  FindFirstAssigneeArgs: ["where", "orderBy", "cursor", "take", "skip", "distinct"],
+  FindFirstAssigneeOrThrowArgs: ["where", "orderBy", "cursor", "take", "skip", "distinct"],
+  FindManyAssigneeArgs: ["where", "orderBy", "cursor", "take", "skip", "distinct"],
+  FindUniqueAssigneeArgs: ["where"],
+  FindUniqueAssigneeOrThrowArgs: ["where"],
+  GroupByAssigneeArgs: ["where", "orderBy", "by", "having", "take", "skip"],
+  UpdateManyAssigneeArgs: ["data", "where"],
+  UpdateOneAssigneeArgs: ["data", "where"],
+  UpsertOneAssigneeArgs: ["where", "create", "update"],
+  AggregateActionArgs: ["where", "orderBy", "cursor", "take", "skip"],
+  CreateManyActionArgs: ["data", "skipDuplicates"],
+  CreateOneActionArgs: ["data"],
+  DeleteManyActionArgs: ["where"],
+  DeleteOneActionArgs: ["where"],
+  FindFirstActionArgs: ["where", "orderBy", "cursor", "take", "skip", "distinct"],
+  FindFirstActionOrThrowArgs: ["where", "orderBy", "cursor", "take", "skip", "distinct"],
+  FindManyActionArgs: ["where", "orderBy", "cursor", "take", "skip", "distinct"],
+  FindUniqueActionArgs: ["where"],
+  FindUniqueActionOrThrowArgs: ["where"],
+  GroupByActionArgs: ["where", "orderBy", "by", "having", "take", "skip"],
+  UpdateManyActionArgs: ["data", "where"],
+  UpdateOneActionArgs: ["data", "where"],
+  UpsertOneActionArgs: ["where", "create", "update"],
+  AggregateCommentArgs: ["where", "orderBy", "cursor", "take", "skip"],
+  CreateManyCommentArgs: ["data", "skipDuplicates"],
+  CreateOneCommentArgs: ["data"],
+  DeleteManyCommentArgs: ["where"],
+  DeleteOneCommentArgs: ["where"],
+  FindFirstCommentArgs: ["where", "orderBy", "cursor", "take", "skip", "distinct"],
+  FindFirstCommentOrThrowArgs: ["where", "orderBy", "cursor", "take", "skip", "distinct"],
+  FindManyCommentArgs: ["where", "orderBy", "cursor", "take", "skip", "distinct"],
+  FindUniqueCommentArgs: ["where"],
+  FindUniqueCommentOrThrowArgs: ["where"],
+  GroupByCommentArgs: ["where", "orderBy", "by", "having", "take", "skip"],
+  UpdateManyCommentArgs: ["data", "where"],
+  UpdateOneCommentArgs: ["data", "where"],
+  UpsertOneCommentArgs: ["where", "create", "update"],
+  AggregateTaskArgs: ["where", "orderBy", "cursor", "take", "skip"],
+  CreateManyTaskArgs: ["data", "skipDuplicates"],
+  CreateOneTaskArgs: ["data"],
+  DeleteManyTaskArgs: ["where"],
+  DeleteOneTaskArgs: ["where"],
+  FindFirstTaskArgs: ["where", "orderBy", "cursor", "take", "skip", "distinct"],
+  FindFirstTaskOrThrowArgs: ["where", "orderBy", "cursor", "take", "skip", "distinct"],
+  FindManyTaskArgs: ["where", "orderBy", "cursor", "take", "skip", "distinct"],
+  FindUniqueTaskArgs: ["where"],
+  FindUniqueTaskOrThrowArgs: ["where"],
+  GroupByTaskArgs: ["where", "orderBy", "by", "having", "take", "skip"],
+  UpdateManyTaskArgs: ["data", "where"],
+  UpdateOneTaskArgs: ["data", "where"],
+  UpsertOneTaskArgs: ["where", "create", "update"]
 };
 
 type ResolverModelNames = keyof typeof crudResolversMap;
@@ -134,6 +295,62 @@ export function applyArgsTypesEnhanceMap(
   }
 }
 
+const relationResolversMap = {
+  User: relationResolvers.UserRelationsResolver,
+  Notification: relationResolvers.NotificationRelationsResolver,
+  Assignee: relationResolvers.AssigneeRelationsResolver,
+  Action: relationResolvers.ActionRelationsResolver,
+  Comment: relationResolvers.CommentRelationsResolver,
+  Task: relationResolvers.TaskRelationsResolver
+};
+const relationResolversInfo = {
+  User: ["tasks", "comments", "assignees", "notifications"],
+  Notification: ["target_user", "target_action"],
+  Assignee: ["target_user", "target_task"],
+  Action: ["notifications"],
+  Comment: ["owner", "target"],
+  Task: ["owner", "comments", "assignee"]
+};
+
+type RelationResolverModelNames = keyof typeof relationResolversMap;
+
+type RelationResolverActionNames<
+  TModel extends RelationResolverModelNames
+> = keyof typeof relationResolversMap[TModel]["prototype"];
+
+export type RelationResolverActionsConfig<TModel extends RelationResolverModelNames>
+  = Partial<Record<RelationResolverActionNames<TModel> | "_all", MethodDecorator[]>>;
+
+export type RelationResolversEnhanceMap = {
+  [TModel in RelationResolverModelNames]?: RelationResolverActionsConfig<TModel>;
+};
+
+export function applyRelationResolversEnhanceMap(
+  relationResolversEnhanceMap: RelationResolversEnhanceMap,
+) {
+  for (const relationResolversEnhanceMapKey of Object.keys(relationResolversEnhanceMap)) {
+    const modelName = relationResolversEnhanceMapKey as keyof typeof relationResolversEnhanceMap;
+    const relationResolverTarget = relationResolversMap[modelName].prototype;
+    const relationResolverActionsConfig = relationResolversEnhanceMap[modelName]!;
+    if (relationResolverActionsConfig._all) {
+      const allActionsDecorators = relationResolverActionsConfig._all;
+      const relationResolverActionNames = relationResolversInfo[modelName as keyof typeof relationResolversInfo];
+      for (const relationResolverActionName of relationResolverActionNames) {
+        tslib.__decorate(allActionsDecorators, relationResolverTarget, relationResolverActionName, null);
+      }
+    }
+    const relationResolverActionsToApply = Object.keys(relationResolverActionsConfig).filter(
+      it => it !== "_all"
+    );
+    for (const relationResolverActionName of relationResolverActionsToApply) {
+      const decorators = relationResolverActionsConfig[
+        relationResolverActionName as keyof typeof relationResolverActionsConfig
+      ] as MethodDecorator[];
+      tslib.__decorate(decorators, relationResolverTarget, relationResolverActionName, null);
+    }
+  }
+}
+
 type TypeConfig = {
   class?: ClassDecorator[];
   fields?: FieldsConfig;
@@ -173,7 +390,12 @@ function applyTypeClassEnhanceConfig<
 }
 
 const modelsInfo = {
-  User: ["id", "email"]
+  User: ["id", "name", "last_sign_in_at", "created_at", "update_at"],
+  Notification: ["id", "userId", "actionId", "readed_at"],
+  Assignee: ["id", "userId", "taskId", "created_at"],
+  Action: ["id", "group", "name", "created_at", "target_id", "target_type"],
+  Comment: ["id", "owner_id", "target_id", "target_type", "parent_id", "content", "created_at", "updated_at"],
+  Task: ["id", "title", "description", "owner_id", "due_at", "created_at", "updated_at", "state"]
 };
 
 type ModelNames = keyof typeof models;
@@ -213,11 +435,41 @@ export function applyModelsEnhanceMap(modelsEnhanceMap: ModelsEnhanceMap) {
 
 const outputsInfo = {
   AggregateUser: ["_count", "_min", "_max"],
-  UserGroupBy: ["id", "email", "password", "password_digest", "_count", "_min", "_max"],
+  UserGroupBy: ["id", "name", "password", "password_digest", "last_sign_in_at", "created_at", "update_at", "_count", "_min", "_max"],
+  AggregateNotification: ["_count", "_min", "_max"],
+  NotificationGroupBy: ["id", "userId", "actionId", "readed_at", "_count", "_min", "_max"],
+  AggregateAssignee: ["_count", "_min", "_max"],
+  AssigneeGroupBy: ["id", "userId", "taskId", "created_at", "_count", "_min", "_max"],
+  AggregateAction: ["_count", "_min", "_max"],
+  ActionGroupBy: ["id", "group", "name", "created_at", "target_id", "target_type", "_count", "_min", "_max"],
+  AggregateComment: ["_count", "_avg", "_sum", "_min", "_max"],
+  CommentGroupBy: ["id", "owner_id", "target_id", "target_type", "parent_id", "content", "created_at", "updated_at", "_count", "_avg", "_sum", "_min", "_max"],
+  AggregateTask: ["_count", "_min", "_max"],
+  TaskGroupBy: ["id", "title", "description", "owner_id", "due_at", "created_at", "updated_at", "state", "_count", "_min", "_max"],
   AffectedRowsOutput: ["count"],
-  UserCountAggregate: ["id", "email", "password", "password_digest", "_all"],
-  UserMinAggregate: ["id", "email", "password", "password_digest"],
-  UserMaxAggregate: ["id", "email", "password", "password_digest"]
+  UserCount: ["tasks", "comments", "assignees", "notifications"],
+  UserCountAggregate: ["id", "name", "password", "password_digest", "last_sign_in_at", "created_at", "update_at", "_all"],
+  UserMinAggregate: ["id", "name", "password", "password_digest", "last_sign_in_at", "created_at", "update_at"],
+  UserMaxAggregate: ["id", "name", "password", "password_digest", "last_sign_in_at", "created_at", "update_at"],
+  NotificationCountAggregate: ["id", "userId", "actionId", "readed_at", "_all"],
+  NotificationMinAggregate: ["id", "userId", "actionId", "readed_at"],
+  NotificationMaxAggregate: ["id", "userId", "actionId", "readed_at"],
+  AssigneeCountAggregate: ["id", "userId", "taskId", "created_at", "_all"],
+  AssigneeMinAggregate: ["id", "userId", "taskId", "created_at"],
+  AssigneeMaxAggregate: ["id", "userId", "taskId", "created_at"],
+  ActionCount: ["notifications"],
+  ActionCountAggregate: ["id", "group", "name", "created_at", "target_id", "target_type", "_all"],
+  ActionMinAggregate: ["id", "group", "name", "created_at", "target_id", "target_type"],
+  ActionMaxAggregate: ["id", "group", "name", "created_at", "target_id", "target_type"],
+  CommentCountAggregate: ["id", "owner_id", "target_id", "target_type", "parent_id", "content", "created_at", "updated_at", "_all"],
+  CommentAvgAggregate: ["parent_id"],
+  CommentSumAggregate: ["parent_id"],
+  CommentMinAggregate: ["id", "owner_id", "target_id", "target_type", "parent_id", "content", "created_at", "updated_at"],
+  CommentMaxAggregate: ["id", "owner_id", "target_id", "target_type", "parent_id", "content", "created_at", "updated_at"],
+  TaskCount: ["comments", "assignee"],
+  TaskCountAggregate: ["id", "title", "description", "owner_id", "due_at", "created_at", "updated_at", "state", "_all"],
+  TaskMinAggregate: ["id", "title", "description", "owner_id", "due_at", "created_at", "updated_at", "state"],
+  TaskMaxAggregate: ["id", "title", "description", "owner_id", "due_at", "created_at", "updated_at", "state"]
 };
 
 type OutputTypesNames = keyof typeof outputTypes;
@@ -258,24 +510,249 @@ export function applyOutputTypesEnhanceMap(
 }
 
 const inputsInfo = {
-  UserWhereInput: ["AND", "OR", "NOT", "id", "email", "password", "password_digest"],
-  UserOrderByWithRelationInput: ["id", "email", "password", "password_digest"],
-  UserWhereUniqueInput: ["id", "email"],
-  UserOrderByWithAggregationInput: ["id", "email", "password", "password_digest", "_count", "_max", "_min"],
-  UserScalarWhereWithAggregatesInput: ["AND", "OR", "NOT", "id", "email", "password", "password_digest"],
-  UserCreateInput: ["id", "email", "password", "password_digest"],
-  UserUpdateInput: ["id", "email", "password", "password_digest"],
-  UserCreateManyInput: ["id", "email", "password", "password_digest"],
-  UserUpdateManyMutationInput: ["id", "email", "password", "password_digest"],
+  UserWhereInput: ["AND", "OR", "NOT", "id", "name", "password", "password_digest", "last_sign_in_at", "created_at", "update_at", "tasks", "comments", "assignees", "notifications"],
+  UserOrderByWithRelationInput: ["id", "name", "password", "password_digest", "last_sign_in_at", "created_at", "update_at", "tasks", "comments", "assignees", "notifications"],
+  UserWhereUniqueInput: ["id"],
+  UserOrderByWithAggregationInput: ["id", "name", "password", "password_digest", "last_sign_in_at", "created_at", "update_at", "_count", "_max", "_min"],
+  UserScalarWhereWithAggregatesInput: ["AND", "OR", "NOT", "id", "name", "password", "password_digest", "last_sign_in_at", "created_at", "update_at"],
+  NotificationWhereInput: ["AND", "OR", "NOT", "id", "target_user", "userId", "target_action", "actionId", "readed_at"],
+  NotificationOrderByWithRelationInput: ["id", "target_user", "userId", "target_action", "actionId", "readed_at"],
+  NotificationWhereUniqueInput: ["id"],
+  NotificationOrderByWithAggregationInput: ["id", "userId", "actionId", "readed_at", "_count", "_max", "_min"],
+  NotificationScalarWhereWithAggregatesInput: ["AND", "OR", "NOT", "id", "userId", "actionId", "readed_at"],
+  AssigneeWhereInput: ["AND", "OR", "NOT", "id", "target_user", "userId", "target_task", "taskId", "created_at"],
+  AssigneeOrderByWithRelationInput: ["id", "target_user", "userId", "target_task", "taskId", "created_at"],
+  AssigneeWhereUniqueInput: ["id"],
+  AssigneeOrderByWithAggregationInput: ["id", "userId", "taskId", "created_at", "_count", "_max", "_min"],
+  AssigneeScalarWhereWithAggregatesInput: ["AND", "OR", "NOT", "id", "userId", "taskId", "created_at"],
+  ActionWhereInput: ["AND", "OR", "NOT", "id", "group", "name", "created_at", "target_id", "target_type", "notifications"],
+  ActionOrderByWithRelationInput: ["id", "group", "name", "created_at", "target_id", "target_type", "notifications"],
+  ActionWhereUniqueInput: ["id"],
+  ActionOrderByWithAggregationInput: ["id", "group", "name", "created_at", "target_id", "target_type", "_count", "_max", "_min"],
+  ActionScalarWhereWithAggregatesInput: ["AND", "OR", "NOT", "id", "group", "name", "created_at", "target_id", "target_type"],
+  CommentWhereInput: ["AND", "OR", "NOT", "id", "owner", "owner_id", "target", "target_id", "target_type", "parent_id", "content", "created_at", "updated_at"],
+  CommentOrderByWithRelationInput: ["id", "owner", "owner_id", "target", "target_id", "target_type", "parent_id", "content", "created_at", "updated_at"],
+  CommentWhereUniqueInput: ["id"],
+  CommentOrderByWithAggregationInput: ["id", "owner_id", "target_id", "target_type", "parent_id", "content", "created_at", "updated_at", "_count", "_avg", "_max", "_min", "_sum"],
+  CommentScalarWhereWithAggregatesInput: ["AND", "OR", "NOT", "id", "owner_id", "target_id", "target_type", "parent_id", "content", "created_at", "updated_at"],
+  TaskWhereInput: ["AND", "OR", "NOT", "id", "title", "description", "owner", "owner_id", "due_at", "created_at", "updated_at", "state", "comments", "assignee"],
+  TaskOrderByWithRelationInput: ["id", "title", "description", "owner", "owner_id", "due_at", "created_at", "updated_at", "state", "comments", "assignee"],
+  TaskWhereUniqueInput: ["id"],
+  TaskOrderByWithAggregationInput: ["id", "title", "description", "owner_id", "due_at", "created_at", "updated_at", "state", "_count", "_max", "_min"],
+  TaskScalarWhereWithAggregatesInput: ["AND", "OR", "NOT", "id", "title", "description", "owner_id", "due_at", "created_at", "updated_at", "state"],
+  UserCreateInput: ["id", "name", "password", "password_digest", "last_sign_in_at", "created_at", "update_at", "tasks", "comments", "assignees", "notifications"],
+  UserUpdateInput: ["id", "name", "password", "password_digest", "last_sign_in_at", "created_at", "update_at", "tasks", "comments", "assignees", "notifications"],
+  UserCreateManyInput: ["id", "name", "password", "password_digest", "last_sign_in_at", "created_at", "update_at"],
+  UserUpdateManyMutationInput: ["id", "name", "password", "password_digest", "last_sign_in_at", "created_at", "update_at"],
+  NotificationCreateInput: ["id", "target_user", "target_action", "readed_at"],
+  NotificationUpdateInput: ["id", "target_user", "target_action", "readed_at"],
+  NotificationCreateManyInput: ["id", "userId", "actionId", "readed_at"],
+  NotificationUpdateManyMutationInput: ["id", "readed_at"],
+  AssigneeCreateInput: ["id", "target_user", "target_task", "created_at"],
+  AssigneeUpdateInput: ["id", "target_user", "target_task", "created_at"],
+  AssigneeCreateManyInput: ["id", "userId", "taskId", "created_at"],
+  AssigneeUpdateManyMutationInput: ["id", "created_at"],
+  ActionCreateInput: ["id", "group", "name", "created_at", "target_id", "target_type", "notifications"],
+  ActionUpdateInput: ["id", "group", "name", "created_at", "target_id", "target_type", "notifications"],
+  ActionCreateManyInput: ["id", "group", "name", "created_at", "target_id", "target_type"],
+  ActionUpdateManyMutationInput: ["id", "group", "name", "created_at", "target_id", "target_type"],
+  CommentCreateInput: ["id", "owner", "target", "target_type", "parent_id", "content", "created_at", "updated_at"],
+  CommentUpdateInput: ["id", "owner", "target", "target_type", "parent_id", "content", "created_at", "updated_at"],
+  CommentCreateManyInput: ["id", "owner_id", "target_id", "target_type", "parent_id", "content", "created_at", "updated_at"],
+  CommentUpdateManyMutationInput: ["id", "target_type", "parent_id", "content", "created_at", "updated_at"],
+  TaskCreateInput: ["id", "title", "description", "owner", "due_at", "created_at", "updated_at", "state", "comments", "assignee"],
+  TaskUpdateInput: ["id", "title", "description", "owner", "due_at", "created_at", "updated_at", "state", "comments", "assignee"],
+  TaskCreateManyInput: ["id", "title", "description", "owner_id", "due_at", "created_at", "updated_at", "state"],
+  TaskUpdateManyMutationInput: ["id", "title", "description", "due_at", "created_at", "updated_at", "state"],
   StringFilter: ["equals", "in", "notIn", "lt", "lte", "gt", "gte", "contains", "startsWith", "endsWith", "mode", "not"],
-  UserCountOrderByAggregateInput: ["id", "email", "password", "password_digest"],
-  UserMaxOrderByAggregateInput: ["id", "email", "password", "password_digest"],
-  UserMinOrderByAggregateInput: ["id", "email", "password", "password_digest"],
+  DateTimeFilter: ["equals", "in", "notIn", "lt", "lte", "gt", "gte", "not"],
+  TaskListRelationFilter: ["every", "some", "none"],
+  CommentListRelationFilter: ["every", "some", "none"],
+  AssigneeListRelationFilter: ["every", "some", "none"],
+  NotificationListRelationFilter: ["every", "some", "none"],
+  TaskOrderByRelationAggregateInput: ["_count"],
+  CommentOrderByRelationAggregateInput: ["_count"],
+  AssigneeOrderByRelationAggregateInput: ["_count"],
+  NotificationOrderByRelationAggregateInput: ["_count"],
+  UserCountOrderByAggregateInput: ["id", "name", "password", "password_digest", "last_sign_in_at", "created_at", "update_at"],
+  UserMaxOrderByAggregateInput: ["id", "name", "password", "password_digest", "last_sign_in_at", "created_at", "update_at"],
+  UserMinOrderByAggregateInput: ["id", "name", "password", "password_digest", "last_sign_in_at", "created_at", "update_at"],
   StringWithAggregatesFilter: ["equals", "in", "notIn", "lt", "lte", "gt", "gte", "contains", "startsWith", "endsWith", "mode", "not", "_count", "_min", "_max"],
+  DateTimeWithAggregatesFilter: ["equals", "in", "notIn", "lt", "lte", "gt", "gte", "not", "_count", "_min", "_max"],
+  UserRelationFilter: ["is", "isNot"],
+  ActionRelationFilter: ["is", "isNot"],
+  NotificationCountOrderByAggregateInput: ["id", "userId", "actionId", "readed_at"],
+  NotificationMaxOrderByAggregateInput: ["id", "userId", "actionId", "readed_at"],
+  NotificationMinOrderByAggregateInput: ["id", "userId", "actionId", "readed_at"],
+  TaskRelationFilter: ["is", "isNot"],
+  AssigneeCountOrderByAggregateInput: ["id", "userId", "taskId", "created_at"],
+  AssigneeMaxOrderByAggregateInput: ["id", "userId", "taskId", "created_at"],
+  AssigneeMinOrderByAggregateInput: ["id", "userId", "taskId", "created_at"],
+  EnumGroupActionsTaskManagerEnumsFilter: ["equals", "in", "notIn", "not"],
+  EnumNameActionsTaskManagerEnumsFilter: ["equals", "in", "notIn", "not"],
+  EnumTargetTypeActionTaskManagerEnumsFilter: ["equals", "in", "notIn", "not"],
+  ActionCountOrderByAggregateInput: ["id", "group", "name", "created_at", "target_id", "target_type"],
+  ActionMaxOrderByAggregateInput: ["id", "group", "name", "created_at", "target_id", "target_type"],
+  ActionMinOrderByAggregateInput: ["id", "group", "name", "created_at", "target_id", "target_type"],
+  EnumGroupActionsTaskManagerEnumsWithAggregatesFilter: ["equals", "in", "notIn", "not", "_count", "_min", "_max"],
+  EnumNameActionsTaskManagerEnumsWithAggregatesFilter: ["equals", "in", "notIn", "not", "_count", "_min", "_max"],
+  EnumTargetTypeActionTaskManagerEnumsWithAggregatesFilter: ["equals", "in", "notIn", "not", "_count", "_min", "_max"],
+  StringNullableFilter: ["equals", "in", "notIn", "lt", "lte", "gt", "gte", "contains", "startsWith", "endsWith", "mode", "not"],
+  IntFilter: ["equals", "in", "notIn", "lt", "lte", "gt", "gte", "not"],
+  CommentCountOrderByAggregateInput: ["id", "owner_id", "target_id", "target_type", "parent_id", "content", "created_at", "updated_at"],
+  CommentAvgOrderByAggregateInput: ["parent_id"],
+  CommentMaxOrderByAggregateInput: ["id", "owner_id", "target_id", "target_type", "parent_id", "content", "created_at", "updated_at"],
+  CommentMinOrderByAggregateInput: ["id", "owner_id", "target_id", "target_type", "parent_id", "content", "created_at", "updated_at"],
+  CommentSumOrderByAggregateInput: ["parent_id"],
+  StringNullableWithAggregatesFilter: ["equals", "in", "notIn", "lt", "lte", "gt", "gte", "contains", "startsWith", "endsWith", "mode", "not", "_count", "_min", "_max"],
+  IntWithAggregatesFilter: ["equals", "in", "notIn", "lt", "lte", "gt", "gte", "not", "_count", "_avg", "_sum", "_min", "_max"],
+  EnumStateTaskTaskManagerEnumsFilter: ["equals", "in", "notIn", "not"],
+  TaskCountOrderByAggregateInput: ["id", "title", "description", "owner_id", "due_at", "created_at", "updated_at", "state"],
+  TaskMaxOrderByAggregateInput: ["id", "title", "description", "owner_id", "due_at", "created_at", "updated_at", "state"],
+  TaskMinOrderByAggregateInput: ["id", "title", "description", "owner_id", "due_at", "created_at", "updated_at", "state"],
+  EnumStateTaskTaskManagerEnumsWithAggregatesFilter: ["equals", "in", "notIn", "not", "_count", "_min", "_max"],
+  TaskCreateNestedManyWithoutOwnerInput: ["create", "connectOrCreate", "createMany", "connect"],
+  CommentCreateNestedManyWithoutOwnerInput: ["create", "connectOrCreate", "createMany", "connect"],
+  AssigneeCreateNestedManyWithoutTarget_userInput: ["create", "connectOrCreate", "createMany", "connect"],
+  NotificationCreateNestedManyWithoutTarget_userInput: ["create", "connectOrCreate", "createMany", "connect"],
   StringFieldUpdateOperationsInput: ["set"],
+  DateTimeFieldUpdateOperationsInput: ["set"],
+  TaskUpdateManyWithoutOwnerNestedInput: ["create", "connectOrCreate", "upsert", "createMany", "set", "disconnect", "delete", "connect", "update", "updateMany", "deleteMany"],
+  CommentUpdateManyWithoutOwnerNestedInput: ["create", "connectOrCreate", "upsert", "createMany", "set", "disconnect", "delete", "connect", "update", "updateMany", "deleteMany"],
+  AssigneeUpdateManyWithoutTarget_userNestedInput: ["create", "connectOrCreate", "upsert", "createMany", "set", "disconnect", "delete", "connect", "update", "updateMany", "deleteMany"],
+  NotificationUpdateManyWithoutTarget_userNestedInput: ["create", "connectOrCreate", "upsert", "createMany", "set", "disconnect", "delete", "connect", "update", "updateMany", "deleteMany"],
+  UserCreateNestedOneWithoutNotificationsInput: ["create", "connectOrCreate", "connect"],
+  ActionCreateNestedOneWithoutNotificationsInput: ["create", "connectOrCreate", "connect"],
+  UserUpdateOneRequiredWithoutNotificationsNestedInput: ["create", "connectOrCreate", "upsert", "connect", "update"],
+  ActionUpdateOneRequiredWithoutNotificationsNestedInput: ["create", "connectOrCreate", "upsert", "connect", "update"],
+  UserCreateNestedOneWithoutAssigneesInput: ["create", "connectOrCreate", "connect"],
+  TaskCreateNestedOneWithoutAssigneeInput: ["create", "connectOrCreate", "connect"],
+  UserUpdateOneRequiredWithoutAssigneesNestedInput: ["create", "connectOrCreate", "upsert", "connect", "update"],
+  TaskUpdateOneRequiredWithoutAssigneeNestedInput: ["create", "connectOrCreate", "upsert", "connect", "update"],
+  NotificationCreateNestedManyWithoutTarget_actionInput: ["create", "connectOrCreate", "createMany", "connect"],
+  EnumGroupActionsTaskManagerEnumsFieldUpdateOperationsInput: ["set"],
+  EnumNameActionsTaskManagerEnumsFieldUpdateOperationsInput: ["set"],
+  EnumTargetTypeActionTaskManagerEnumsFieldUpdateOperationsInput: ["set"],
+  NotificationUpdateManyWithoutTarget_actionNestedInput: ["create", "connectOrCreate", "upsert", "createMany", "set", "disconnect", "delete", "connect", "update", "updateMany", "deleteMany"],
+  UserCreateNestedOneWithoutCommentsInput: ["create", "connectOrCreate", "connect"],
+  TaskCreateNestedOneWithoutCommentsInput: ["create", "connectOrCreate", "connect"],
+  UserUpdateOneWithoutCommentsNestedInput: ["create", "connectOrCreate", "upsert", "disconnect", "delete", "connect", "update"],
+  TaskUpdateOneRequiredWithoutCommentsNestedInput: ["create", "connectOrCreate", "upsert", "connect", "update"],
+  IntFieldUpdateOperationsInput: ["set", "increment", "decrement", "multiply", "divide"],
+  NullableStringFieldUpdateOperationsInput: ["set"],
+  UserCreateNestedOneWithoutTasksInput: ["create", "connectOrCreate", "connect"],
+  CommentCreateNestedManyWithoutTargetInput: ["create", "connectOrCreate", "createMany", "connect"],
+  AssigneeCreateNestedManyWithoutTarget_taskInput: ["create", "connectOrCreate", "createMany", "connect"],
+  UserUpdateOneRequiredWithoutTasksNestedInput: ["create", "connectOrCreate", "upsert", "connect", "update"],
+  EnumStateTaskTaskManagerEnumsFieldUpdateOperationsInput: ["set"],
+  CommentUpdateManyWithoutTargetNestedInput: ["create", "connectOrCreate", "upsert", "createMany", "set", "disconnect", "delete", "connect", "update", "updateMany", "deleteMany"],
+  AssigneeUpdateManyWithoutTarget_taskNestedInput: ["create", "connectOrCreate", "upsert", "createMany", "set", "disconnect", "delete", "connect", "update", "updateMany", "deleteMany"],
   NestedStringFilter: ["equals", "in", "notIn", "lt", "lte", "gt", "gte", "contains", "startsWith", "endsWith", "not"],
+  NestedDateTimeFilter: ["equals", "in", "notIn", "lt", "lte", "gt", "gte", "not"],
   NestedStringWithAggregatesFilter: ["equals", "in", "notIn", "lt", "lte", "gt", "gte", "contains", "startsWith", "endsWith", "not", "_count", "_min", "_max"],
-  NestedIntFilter: ["equals", "in", "notIn", "lt", "lte", "gt", "gte", "not"]
+  NestedIntFilter: ["equals", "in", "notIn", "lt", "lte", "gt", "gte", "not"],
+  NestedDateTimeWithAggregatesFilter: ["equals", "in", "notIn", "lt", "lte", "gt", "gte", "not", "_count", "_min", "_max"],
+  NestedEnumGroupActionsTaskManagerEnumsFilter: ["equals", "in", "notIn", "not"],
+  NestedEnumNameActionsTaskManagerEnumsFilter: ["equals", "in", "notIn", "not"],
+  NestedEnumTargetTypeActionTaskManagerEnumsFilter: ["equals", "in", "notIn", "not"],
+  NestedEnumGroupActionsTaskManagerEnumsWithAggregatesFilter: ["equals", "in", "notIn", "not", "_count", "_min", "_max"],
+  NestedEnumNameActionsTaskManagerEnumsWithAggregatesFilter: ["equals", "in", "notIn", "not", "_count", "_min", "_max"],
+  NestedEnumTargetTypeActionTaskManagerEnumsWithAggregatesFilter: ["equals", "in", "notIn", "not", "_count", "_min", "_max"],
+  NestedStringNullableFilter: ["equals", "in", "notIn", "lt", "lte", "gt", "gte", "contains", "startsWith", "endsWith", "not"],
+  NestedStringNullableWithAggregatesFilter: ["equals", "in", "notIn", "lt", "lte", "gt", "gte", "contains", "startsWith", "endsWith", "not", "_count", "_min", "_max"],
+  NestedIntNullableFilter: ["equals", "in", "notIn", "lt", "lte", "gt", "gte", "not"],
+  NestedIntWithAggregatesFilter: ["equals", "in", "notIn", "lt", "lte", "gt", "gte", "not", "_count", "_avg", "_sum", "_min", "_max"],
+  NestedFloatFilter: ["equals", "in", "notIn", "lt", "lte", "gt", "gte", "not"],
+  NestedEnumStateTaskTaskManagerEnumsFilter: ["equals", "in", "notIn", "not"],
+  NestedEnumStateTaskTaskManagerEnumsWithAggregatesFilter: ["equals", "in", "notIn", "not", "_count", "_min", "_max"],
+  TaskCreateWithoutOwnerInput: ["id", "title", "description", "due_at", "created_at", "updated_at", "state", "comments", "assignee"],
+  TaskCreateOrConnectWithoutOwnerInput: ["where", "create"],
+  TaskCreateManyOwnerInputEnvelope: ["data", "skipDuplicates"],
+  CommentCreateWithoutOwnerInput: ["id", "target", "target_type", "parent_id", "content", "created_at", "updated_at"],
+  CommentCreateOrConnectWithoutOwnerInput: ["where", "create"],
+  CommentCreateManyOwnerInputEnvelope: ["data", "skipDuplicates"],
+  AssigneeCreateWithoutTarget_userInput: ["id", "target_task", "created_at"],
+  AssigneeCreateOrConnectWithoutTarget_userInput: ["where", "create"],
+  AssigneeCreateManyTarget_userInputEnvelope: ["data", "skipDuplicates"],
+  NotificationCreateWithoutTarget_userInput: ["id", "target_action", "readed_at"],
+  NotificationCreateOrConnectWithoutTarget_userInput: ["where", "create"],
+  NotificationCreateManyTarget_userInputEnvelope: ["data", "skipDuplicates"],
+  TaskUpsertWithWhereUniqueWithoutOwnerInput: ["where", "update", "create"],
+  TaskUpdateWithWhereUniqueWithoutOwnerInput: ["where", "data"],
+  TaskUpdateManyWithWhereWithoutOwnerInput: ["where", "data"],
+  TaskScalarWhereInput: ["AND", "OR", "NOT", "id", "title", "description", "owner_id", "due_at", "created_at", "updated_at", "state"],
+  CommentUpsertWithWhereUniqueWithoutOwnerInput: ["where", "update", "create"],
+  CommentUpdateWithWhereUniqueWithoutOwnerInput: ["where", "data"],
+  CommentUpdateManyWithWhereWithoutOwnerInput: ["where", "data"],
+  CommentScalarWhereInput: ["AND", "OR", "NOT", "id", "owner_id", "target_id", "target_type", "parent_id", "content", "created_at", "updated_at"],
+  AssigneeUpsertWithWhereUniqueWithoutTarget_userInput: ["where", "update", "create"],
+  AssigneeUpdateWithWhereUniqueWithoutTarget_userInput: ["where", "data"],
+  AssigneeUpdateManyWithWhereWithoutTarget_userInput: ["where", "data"],
+  AssigneeScalarWhereInput: ["AND", "OR", "NOT", "id", "userId", "taskId", "created_at"],
+  NotificationUpsertWithWhereUniqueWithoutTarget_userInput: ["where", "update", "create"],
+  NotificationUpdateWithWhereUniqueWithoutTarget_userInput: ["where", "data"],
+  NotificationUpdateManyWithWhereWithoutTarget_userInput: ["where", "data"],
+  NotificationScalarWhereInput: ["AND", "OR", "NOT", "id", "userId", "actionId", "readed_at"],
+  UserCreateWithoutNotificationsInput: ["id", "name", "password", "password_digest", "last_sign_in_at", "created_at", "update_at", "tasks", "comments", "assignees"],
+  UserCreateOrConnectWithoutNotificationsInput: ["where", "create"],
+  ActionCreateWithoutNotificationsInput: ["id", "group", "name", "created_at", "target_id", "target_type"],
+  ActionCreateOrConnectWithoutNotificationsInput: ["where", "create"],
+  UserUpsertWithoutNotificationsInput: ["update", "create"],
+  UserUpdateWithoutNotificationsInput: ["id", "name", "password", "password_digest", "last_sign_in_at", "created_at", "update_at", "tasks", "comments", "assignees"],
+  ActionUpsertWithoutNotificationsInput: ["update", "create"],
+  ActionUpdateWithoutNotificationsInput: ["id", "group", "name", "created_at", "target_id", "target_type"],
+  UserCreateWithoutAssigneesInput: ["id", "name", "password", "password_digest", "last_sign_in_at", "created_at", "update_at", "tasks", "comments", "notifications"],
+  UserCreateOrConnectWithoutAssigneesInput: ["where", "create"],
+  TaskCreateWithoutAssigneeInput: ["id", "title", "description", "owner", "due_at", "created_at", "updated_at", "state", "comments"],
+  TaskCreateOrConnectWithoutAssigneeInput: ["where", "create"],
+  UserUpsertWithoutAssigneesInput: ["update", "create"],
+  UserUpdateWithoutAssigneesInput: ["id", "name", "password", "password_digest", "last_sign_in_at", "created_at", "update_at", "tasks", "comments", "notifications"],
+  TaskUpsertWithoutAssigneeInput: ["update", "create"],
+  TaskUpdateWithoutAssigneeInput: ["id", "title", "description", "owner", "due_at", "created_at", "updated_at", "state", "comments"],
+  NotificationCreateWithoutTarget_actionInput: ["id", "target_user", "readed_at"],
+  NotificationCreateOrConnectWithoutTarget_actionInput: ["where", "create"],
+  NotificationCreateManyTarget_actionInputEnvelope: ["data", "skipDuplicates"],
+  NotificationUpsertWithWhereUniqueWithoutTarget_actionInput: ["where", "update", "create"],
+  NotificationUpdateWithWhereUniqueWithoutTarget_actionInput: ["where", "data"],
+  NotificationUpdateManyWithWhereWithoutTarget_actionInput: ["where", "data"],
+  UserCreateWithoutCommentsInput: ["id", "name", "password", "password_digest", "last_sign_in_at", "created_at", "update_at", "tasks", "assignees", "notifications"],
+  UserCreateOrConnectWithoutCommentsInput: ["where", "create"],
+  TaskCreateWithoutCommentsInput: ["id", "title", "description", "owner", "due_at", "created_at", "updated_at", "state", "assignee"],
+  TaskCreateOrConnectWithoutCommentsInput: ["where", "create"],
+  UserUpsertWithoutCommentsInput: ["update", "create"],
+  UserUpdateWithoutCommentsInput: ["id", "name", "password", "password_digest", "last_sign_in_at", "created_at", "update_at", "tasks", "assignees", "notifications"],
+  TaskUpsertWithoutCommentsInput: ["update", "create"],
+  TaskUpdateWithoutCommentsInput: ["id", "title", "description", "owner", "due_at", "created_at", "updated_at", "state", "assignee"],
+  UserCreateWithoutTasksInput: ["id", "name", "password", "password_digest", "last_sign_in_at", "created_at", "update_at", "comments", "assignees", "notifications"],
+  UserCreateOrConnectWithoutTasksInput: ["where", "create"],
+  CommentCreateWithoutTargetInput: ["id", "owner", "target_type", "parent_id", "content", "created_at", "updated_at"],
+  CommentCreateOrConnectWithoutTargetInput: ["where", "create"],
+  CommentCreateManyTargetInputEnvelope: ["data", "skipDuplicates"],
+  AssigneeCreateWithoutTarget_taskInput: ["id", "target_user", "created_at"],
+  AssigneeCreateOrConnectWithoutTarget_taskInput: ["where", "create"],
+  AssigneeCreateManyTarget_taskInputEnvelope: ["data", "skipDuplicates"],
+  UserUpsertWithoutTasksInput: ["update", "create"],
+  UserUpdateWithoutTasksInput: ["id", "name", "password", "password_digest", "last_sign_in_at", "created_at", "update_at", "comments", "assignees", "notifications"],
+  CommentUpsertWithWhereUniqueWithoutTargetInput: ["where", "update", "create"],
+  CommentUpdateWithWhereUniqueWithoutTargetInput: ["where", "data"],
+  CommentUpdateManyWithWhereWithoutTargetInput: ["where", "data"],
+  AssigneeUpsertWithWhereUniqueWithoutTarget_taskInput: ["where", "update", "create"],
+  AssigneeUpdateWithWhereUniqueWithoutTarget_taskInput: ["where", "data"],
+  AssigneeUpdateManyWithWhereWithoutTarget_taskInput: ["where", "data"],
+  TaskCreateManyOwnerInput: ["id", "title", "description", "due_at", "created_at", "updated_at", "state"],
+  CommentCreateManyOwnerInput: ["id", "target_id", "target_type", "parent_id", "content", "created_at", "updated_at"],
+  AssigneeCreateManyTarget_userInput: ["id", "taskId", "created_at"],
+  NotificationCreateManyTarget_userInput: ["id", "actionId", "readed_at"],
+  TaskUpdateWithoutOwnerInput: ["id", "title", "description", "due_at", "created_at", "updated_at", "state", "comments", "assignee"],
+  CommentUpdateWithoutOwnerInput: ["id", "target", "target_type", "parent_id", "content", "created_at", "updated_at"],
+  AssigneeUpdateWithoutTarget_userInput: ["id", "target_task", "created_at"],
+  NotificationUpdateWithoutTarget_userInput: ["id", "target_action", "readed_at"],
+  NotificationCreateManyTarget_actionInput: ["id", "userId", "readed_at"],
+  NotificationUpdateWithoutTarget_actionInput: ["id", "target_user", "readed_at"],
+  CommentCreateManyTargetInput: ["id", "owner_id", "target_type", "parent_id", "content", "created_at", "updated_at"],
+  AssigneeCreateManyTarget_taskInput: ["id", "userId", "created_at"],
+  CommentUpdateWithoutTargetInput: ["id", "owner", "target_type", "parent_id", "content", "created_at", "updated_at"],
+  AssigneeUpdateWithoutTarget_taskInput: ["id", "target_user", "created_at"]
 };
 
 type InputTypesNames = keyof typeof inputTypes;

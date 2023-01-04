@@ -1,4 +1,13 @@
+export { ActionScalarFieldEnum } from "./ActionScalarFieldEnum";
+export { AssigneeScalarFieldEnum } from "./AssigneeScalarFieldEnum";
+export { CommentScalarFieldEnum } from "./CommentScalarFieldEnum";
+export { GroupActionsTaskManagerEnums } from "./GroupActionsTaskManagerEnums";
+export { NameActionsTaskManagerEnums } from "./NameActionsTaskManagerEnums";
+export { NotificationScalarFieldEnum } from "./NotificationScalarFieldEnum";
 export { QueryMode } from "./QueryMode";
 export { SortOrder } from "./SortOrder";
+export { StateTaskTaskManagerEnums } from "./StateTaskTaskManagerEnums";
+export { TargetTypeActionTaskManagerEnums } from "./TargetTypeActionTaskManagerEnums";
+export { TaskScalarFieldEnum } from "./TaskScalarFieldEnum";
 export { TransactionIsolationLevel } from "./TransactionIsolationLevel";
 export { UserScalarFieldEnum } from "./UserScalarFieldEnum";
