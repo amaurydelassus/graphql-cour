@@ -2281,6 +2281,7 @@ input UserCountOrderByAggregateInput {
   last_sign_in_at: SortOrder
   name: SortOrder
   password: SortOrder
+  password_digest: SortOrder
   update_at: SortOrder
 }
 
@@ -2293,6 +2294,7 @@ input UserCreateInput {
   name: String!
   notifications: NotificationCreateNestedManyWithoutTarget_userInput
   password: String!
+  password_digest: String!
   tasks: TaskCreateNestedManyWithoutOwnerInput
   update_at: DateTime!
 }
@@ -2303,6 +2305,7 @@ input UserCreateManyInput {
   last_sign_in_at: DateTime!
   name: String!
   password: String!
+  password_digest: String!
   update_at: DateTime!
 }
 
@@ -2358,6 +2361,7 @@ input UserCreateWithoutAssigneesInput {
   name: String!
   notifications: NotificationCreateNestedManyWithoutTarget_userInput
   password: String!
+  password_digest: String!
   tasks: TaskCreateNestedManyWithoutOwnerInput
   update_at: DateTime!
 }
@@ -2370,6 +2374,7 @@ input UserCreateWithoutCommentsInput {
   name: String!
   notifications: NotificationCreateNestedManyWithoutTarget_userInput
   password: String!
+  password_digest: String!
   tasks: TaskCreateNestedManyWithoutOwnerInput
   update_at: DateTime!
 }
@@ -2382,6 +2387,7 @@ input UserCreateWithoutNotificationsInput {
   last_sign_in_at: DateTime!
   name: String!
   password: String!
+  password_digest: String!
   tasks: TaskCreateNestedManyWithoutOwnerInput
   update_at: DateTime!
 }
@@ -2395,6 +2401,7 @@ input UserCreateWithoutTasksInput {
   name: String!
   notifications: NotificationCreateNestedManyWithoutTarget_userInput
   password: String!
+  password_digest: String!
   update_at: DateTime!
 }
 
@@ -2427,6 +2434,7 @@ input UserMaxOrderByAggregateInput {
   last_sign_in_at: SortOrder
   name: SortOrder
   password: SortOrder
+  password_digest: SortOrder
   update_at: SortOrder
 }
 
@@ -2446,6 +2454,7 @@ input UserMinOrderByAggregateInput {
   last_sign_in_at: SortOrder
   name: SortOrder
   password: SortOrder
+  password_digest: SortOrder
   update_at: SortOrder
 }
 
@@ -2458,6 +2467,7 @@ input UserOrderByWithAggregationInput {
   last_sign_in_at: SortOrder
   name: SortOrder
   password: SortOrder
+  password_digest: SortOrder
   update_at: SortOrder
 }
 
@@ -2470,6 +2480,7 @@ input UserOrderByWithRelationInput {
   name: SortOrder
   notifications: NotificationOrderByRelationAggregateInput
   password: SortOrder
+  password_digest: SortOrder
   tasks: TaskOrderByRelationAggregateInput
   update_at: SortOrder
 }
@@ -2498,6 +2509,7 @@ input UserScalarWhereWithAggregatesInput {
   last_sign_in_at: DateTimeWithAggregatesFilter
   name: StringWithAggregatesFilter
   password: StringWithAggregatesFilter
+  password_digest: StringWithAggregatesFilter
   update_at: DateTimeWithAggregatesFilter
 }
 
@@ -2510,6 +2522,7 @@ input UserUpdateInput {
   name: StringFieldUpdateOperationsInput
   notifications: NotificationUpdateManyWithoutTarget_userNestedInput
   password: StringFieldUpdateOperationsInput
+  password_digest: StringFieldUpdateOperationsInput
   tasks: TaskUpdateManyWithoutOwnerNestedInput
   update_at: DateTimeFieldUpdateOperationsInput
 }
@@ -2520,6 +2533,7 @@ input UserUpdateManyMutationInput {
   last_sign_in_at: DateTimeFieldUpdateOperationsInput
   name: StringFieldUpdateOperationsInput
   password: StringFieldUpdateOperationsInput
+  password_digest: StringFieldUpdateOperationsInput
   update_at: DateTimeFieldUpdateOperationsInput
 }
 
@@ -2565,6 +2579,7 @@ input UserUpdateWithoutAssigneesInput {
   name: StringFieldUpdateOperationsInput
   notifications: NotificationUpdateManyWithoutTarget_userNestedInput
   password: StringFieldUpdateOperationsInput
+  password_digest: StringFieldUpdateOperationsInput
   tasks: TaskUpdateManyWithoutOwnerNestedInput
   update_at: DateTimeFieldUpdateOperationsInput
 }
@@ -2577,6 +2592,7 @@ input UserUpdateWithoutCommentsInput {
   name: StringFieldUpdateOperationsInput
   notifications: NotificationUpdateManyWithoutTarget_userNestedInput
   password: StringFieldUpdateOperationsInput
+  password_digest: StringFieldUpdateOperationsInput
   tasks: TaskUpdateManyWithoutOwnerNestedInput
   update_at: DateTimeFieldUpdateOperationsInput
 }
@@ -2589,6 +2605,7 @@ input UserUpdateWithoutNotificationsInput {
   last_sign_in_at: DateTimeFieldUpdateOperationsInput
   name: StringFieldUpdateOperationsInput
   password: StringFieldUpdateOperationsInput
+  password_digest: StringFieldUpdateOperationsInput
   tasks: TaskUpdateManyWithoutOwnerNestedInput
   update_at: DateTimeFieldUpdateOperationsInput
 }
@@ -2602,6 +2619,7 @@ input UserUpdateWithoutTasksInput {
   name: StringFieldUpdateOperationsInput
   notifications: NotificationUpdateManyWithoutTarget_userNestedInput
   password: StringFieldUpdateOperationsInput
+  password_digest: StringFieldUpdateOperationsInput
   update_at: DateTimeFieldUpdateOperationsInput
 }
 
@@ -2637,6 +2655,7 @@ input UserWhereInput {
   name: StringFilter
   notifications: NotificationListRelationFilter
   password: StringFilter
+  password_digest: StringFilter
   tasks: TaskListRelationFilter
   update_at: DateTimeFilter
 }

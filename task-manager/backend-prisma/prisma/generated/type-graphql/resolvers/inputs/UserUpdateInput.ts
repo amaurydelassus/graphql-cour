@@ -28,6 +28,11 @@ export class UserUpdateInput {
   })
   password?: StringFieldUpdateOperationsInput | undefined;
 
+  @TypeGraphQL.Field(_type => StringFieldUpdateOperationsInput, {
+    nullable: true
+  })
+  password_digest?: StringFieldUpdateOperationsInput | undefined;
+
   @TypeGraphQL.Field(_type => DateTimeFieldUpdateOperationsInput, {
     nullable: true
   })

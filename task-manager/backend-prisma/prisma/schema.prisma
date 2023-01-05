@@ -19,7 +19,7 @@ model User {
     name            String
     /// @TypeGraphQL.omit(output: true)
     password        String
-    /// @TypeGraphQL.omit(output: true, input: true)
+    /// @TypeGraphQL.omit(output: true)
     password_digest String
     last_sign_in_at DateTime
     created_at      DateTime

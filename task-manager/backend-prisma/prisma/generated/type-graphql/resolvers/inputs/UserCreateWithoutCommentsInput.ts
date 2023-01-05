@@ -25,6 +25,11 @@ export class UserCreateWithoutCommentsInput {
   })
   password!: string;
 
+  @TypeGraphQL.Field(_type => String, {
+    nullable: false
+  })
+  password_digest!: string;
+
   @TypeGraphQL.Field(_type => Date, {
     nullable: false
   })

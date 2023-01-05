@@ -43,6 +43,11 @@ export class UserWhereInput {
   })
   password?: StringFilter | undefined;
 
+  @TypeGraphQL.Field(_type => StringFilter, {
+    nullable: true
+  })
+  password_digest?: StringFilter | undefined;
+
   @TypeGraphQL.Field(_type => DateTimeFilter, {
     nullable: true
   })

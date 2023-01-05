@@ -26,6 +26,11 @@ export class UserMaxOrderByAggregateInput {
   @TypeGraphQL.Field(_type => SortOrder, {
     nullable: true
   })
+  password_digest?: "asc" | "desc" | undefined;
+
+  @TypeGraphQL.Field(_type => SortOrder, {
+    nullable: true
+  })
   last_sign_in_at?: "asc" | "desc" | undefined;
 
   @TypeGraphQL.Field(_type => SortOrder, {

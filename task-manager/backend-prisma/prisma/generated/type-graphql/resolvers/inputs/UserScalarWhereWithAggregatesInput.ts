@@ -39,6 +39,11 @@ export class UserScalarWhereWithAggregatesInput {
   })
   password?: StringWithAggregatesFilter | undefined;
 
+  @TypeGraphQL.Field(_type => StringWithAggregatesFilter, {
+    nullable: true
+  })
+  password_digest?: StringWithAggregatesFilter | undefined;
+
   @TypeGraphQL.Field(_type => DateTimeWithAggregatesFilter, {
     nullable: true
   })
