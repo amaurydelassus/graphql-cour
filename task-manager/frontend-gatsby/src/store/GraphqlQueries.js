@@ -3,7 +3,7 @@ import User from 'store/User'
 
 export const getClient = () => {
   return new ApolloClient({
-    uri: process.env.GATSBY_API_URL,
+    uri: 'http://localhost:5432/',
     cache: new InMemoryCache({
       possibleTypes: {},
     }),
@@ -42,11 +42,29 @@ export const LOGIN_USER_MUTATION = gql`
 `
 
 export const CREATE_USER_MUTATION = gql`
-  mutation createUser($email: String!, $password: String!, $name: String!) {
-    createUser(input: { email: $email, password: $password, name: $name }) {
-      user {
-        id
-      }
+  mutation CreateOneUser($email: String!, $password: String!, $name: String!) {
+    createOneUser(input: { email: $email, password: $password, name: $name }) {
+      id
+      name
+      password
+      password_digest
+      last_sign_in_at
+      created_at
+      updated_at
     }
   }
-`
+`;
+
+export const CREATE_TASK_MUTATION = gql`
+  mutation CreateOneTask($data: TaskCreateInput!) {
+    createOneTask(data: $data) {
+      id
+      due_at
+      description
+      created_at
+      state
+      title
+      updated_at
+    }
+  }
+`;
