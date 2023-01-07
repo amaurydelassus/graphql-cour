@@ -42,8 +42,8 @@ export const LOGIN_USER_MUTATION = gql`
 `
 
 export const CREATE_USER_MUTATION = gql`
-  mutation CreateOneUser($email: String!, $password: String!, $name: String!) {
-    createOneUser(input: { email: $email, password: $password, name: $name }) {
+  mutation CreateOneUser($email: String!, $password: String!, $name: String!, $last_sign_in_at: Date!, $password_digest: String!, $created_at: Date!, $updated_at: Date!) {
+    createOneUser(input: { email: $email, password: $password, name: $name , password_digest: $password_digest, last_sign_in_at: $last_sign_in_at, created_at: $created_at, updated_at: $updated_at}) {
       id
       name
       password

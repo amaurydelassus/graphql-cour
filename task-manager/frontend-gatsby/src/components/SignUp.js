@@ -32,7 +32,7 @@ const SignUp = () => {
   function submit() {
     // getClient()
     //   .useMutation({
-    //     mutation: CREATE_USER_MUTATION, 
+    //     mutation: CREATE_USER_MUTATION,
     //     variables: {
     //       data: {
     //         name: name,
@@ -48,7 +48,6 @@ const SignUp = () => {
 
       signUp({
         variables: {
-          data: {
             name: name,
             password: password,
             email: email,
@@ -57,7 +56,6 @@ const SignUp = () => {
             created_at : new Date().toISOString().split('T')[0],
             updated_at : new Date().toISOString().split('T')[0],
           }
-        }
       }
       )
       .then(res => {
