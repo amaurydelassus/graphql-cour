@@ -30,22 +30,6 @@ const SignUp = () => {
   }
 
   function submit() {
-    // getClient()
-    //   .useMutation({
-    //     mutation: CREATE_USER_MUTATION,
-    //     variables: {
-    //       data: {
-    //         name: name,
-    //         password: password,
-    //         email: email,
-    //         last_sign_in_at : new Date().toISOString().split('T')[0],
-    //         password_digest : password,
-    //         created_at : new Date().toISOString().split('T')[0],
-    //         updated_at : new Date().toISOString().split('T')[0],
-    //       }
-    //     }
-    //   })
-
       signUp({
         variables: {
             name: name,

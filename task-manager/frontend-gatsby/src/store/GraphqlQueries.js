@@ -68,3 +68,14 @@ export const CREATE_TASK_MUTATION = gql`
     }
   }
 `;
+
+export const CHANGE_ASSIGNEE_MUTATION = gql`
+  mutation ChangeAssigneeMutation($created_at: Date!, $taskId: String!, $userId: String ) {
+    ChangeAssigneeMutation(created_at: $created_at, taskId: $taskId, userId: $userId) {
+      id
+      created_at
+      taskId
+      userId
+    }
+  }
+`;
