@@ -1153,6 +1153,7 @@ type Mutation {
   deleteOneTask(where: TaskWhereUniqueInput!): Task
   deleteOneUser(where: UserWhereUniqueInput!): User
   publishMessage(message: String!): Boolean
+  signIn(data: UserCreateInput!): User!
   signUp(data: UserCreateInput!): User!
   updateManyAction(data: ActionUpdateManyMutationInput!, where: ActionWhereInput): AffectedRowsOutput!
   updateManyAssignee(data: AssigneeUpdateManyMutationInput!, where: AssigneeWhereInput): AffectedRowsOutput!
@@ -1674,6 +1675,10 @@ input NotificationWhereInput {
 
 input NotificationWhereUniqueInput {
   id: String
+}
+
+input NullableStringFieldUpdateOperationsInput {
+  set: String
 }
 
 type Query {
@@ -2254,7 +2259,7 @@ type User {
   email: String!
   id: ID!
   last_sign_in_at: DateTime!
-  name: String!
+  name: String
   notifications(cursor: NotificationWhereUniqueInput, distinct: [NotificationScalarFieldEnum!], orderBy: [NotificationOrderByWithRelationInput!], skip: Int, take: Int, where: NotificationWhereInput): [Notification!]!
   tasks(cursor: TaskWhereUniqueInput, distinct: [TaskScalarFieldEnum!], orderBy: [TaskOrderByWithRelationInput!], skip: Int, take: Int, where: TaskWhereInput): [Task!]!
   update_at: DateTime!
@@ -2297,10 +2302,10 @@ input UserCreateInput {
   email: String!
   id: String
   last_sign_in_at: DateTime
-  name: String!
+  name: String
   notifications: NotificationCreateNestedManyWithoutTarget_userInput
-  password: String!
-  password_digest: String!
+  password: String
+  password_digest: String
   tasks: TaskCreateNestedManyWithoutOwnerInput
   update_at: DateTime
 }
@@ -2310,9 +2315,9 @@ input UserCreateManyInput {
   email: String!
   id: String
   last_sign_in_at: DateTime
-  name: String!
-  password: String!
-  password_digest: String!
+  name: String
+  password: String
+  password_digest: String
   update_at: DateTime
 }
 
@@ -2366,10 +2371,10 @@ input UserCreateWithoutAssigneesInput {
   email: String!
   id: String
   last_sign_in_at: DateTime
-  name: String!
+  name: String
   notifications: NotificationCreateNestedManyWithoutTarget_userInput
-  password: String!
-  password_digest: String!
+  password: String
+  password_digest: String
   tasks: TaskCreateNestedManyWithoutOwnerInput
   update_at: DateTime
 }
@@ -2380,10 +2385,10 @@ input UserCreateWithoutCommentsInput {
   email: String!
   id: String
   last_sign_in_at: DateTime
-  name: String!
+  name: String
   notifications: NotificationCreateNestedManyWithoutTarget_userInput
-  password: String!
-  password_digest: String!
+  password: String
+  password_digest: String
   tasks: TaskCreateNestedManyWithoutOwnerInput
   update_at: DateTime
 }
@@ -2395,9 +2400,9 @@ input UserCreateWithoutNotificationsInput {
   email: String!
   id: String
   last_sign_in_at: DateTime
-  name: String!
-  password: String!
-  password_digest: String!
+  name: String
+  password: String
+  password_digest: String
   tasks: TaskCreateNestedManyWithoutOwnerInput
   update_at: DateTime
 }
@@ -2409,10 +2414,10 @@ input UserCreateWithoutTasksInput {
   email: String!
   id: String
   last_sign_in_at: DateTime
-  name: String!
+  name: String
   notifications: NotificationCreateNestedManyWithoutTarget_userInput
-  password: String!
-  password_digest: String!
+  password: String
+  password_digest: String
   update_at: DateTime
 }
 
@@ -2424,9 +2429,9 @@ type UserGroupBy {
   email: String!
   id: String!
   last_sign_in_at: DateTime!
-  name: String!
-  password: String!
-  password_digest: String!
+  name: String
+  password: String
+  password_digest: String
   update_at: DateTime!
 }
 
@@ -2527,9 +2532,9 @@ input UserScalarWhereWithAggregatesInput {
   email: StringWithAggregatesFilter
   id: StringWithAggregatesFilter
   last_sign_in_at: DateTimeWithAggregatesFilter
-  name: StringWithAggregatesFilter
-  password: StringWithAggregatesFilter
-  password_digest: StringWithAggregatesFilter
+  name: StringNullableWithAggregatesFilter
+  password: StringNullableWithAggregatesFilter
+  password_digest: StringNullableWithAggregatesFilter
   update_at: DateTimeWithAggregatesFilter
 }
 
@@ -2540,10 +2545,10 @@ input UserUpdateInput {
   email: StringFieldUpdateOperationsInput
   id: StringFieldUpdateOperationsInput
   last_sign_in_at: DateTimeFieldUpdateOperationsInput
-  name: StringFieldUpdateOperationsInput
+  name: NullableStringFieldUpdateOperationsInput
   notifications: NotificationUpdateManyWithoutTarget_userNestedInput
-  password: StringFieldUpdateOperationsInput
-  password_digest: StringFieldUpdateOperationsInput
+  password: NullableStringFieldUpdateOperationsInput
+  password_digest: NullableStringFieldUpdateOperationsInput
   tasks: TaskUpdateManyWithoutOwnerNestedInput
   update_at: DateTimeFieldUpdateOperationsInput
 }
@@ -2553,9 +2558,9 @@ input UserUpdateManyMutationInput {
   email: StringFieldUpdateOperationsInput
   id: StringFieldUpdateOperationsInput
   last_sign_in_at: DateTimeFieldUpdateOperationsInput
-  name: StringFieldUpdateOperationsInput
-  password: StringFieldUpdateOperationsInput
-  password_digest: StringFieldUpdateOperationsInput
+  name: NullableStringFieldUpdateOperationsInput
+  password: NullableStringFieldUpdateOperationsInput
+  password_digest: NullableStringFieldUpdateOperationsInput
   update_at: DateTimeFieldUpdateOperationsInput
 }
 
@@ -2599,10 +2604,10 @@ input UserUpdateWithoutAssigneesInput {
   email: StringFieldUpdateOperationsInput
   id: StringFieldUpdateOperationsInput
   last_sign_in_at: DateTimeFieldUpdateOperationsInput
-  name: StringFieldUpdateOperationsInput
+  name: NullableStringFieldUpdateOperationsInput
   notifications: NotificationUpdateManyWithoutTarget_userNestedInput
-  password: StringFieldUpdateOperationsInput
-  password_digest: StringFieldUpdateOperationsInput
+  password: NullableStringFieldUpdateOperationsInput
+  password_digest: NullableStringFieldUpdateOperationsInput
   tasks: TaskUpdateManyWithoutOwnerNestedInput
   update_at: DateTimeFieldUpdateOperationsInput
 }
@@ -2613,10 +2618,10 @@ input UserUpdateWithoutCommentsInput {
   email: StringFieldUpdateOperationsInput
   id: StringFieldUpdateOperationsInput
   last_sign_in_at: DateTimeFieldUpdateOperationsInput
-  name: StringFieldUpdateOperationsInput
+  name: NullableStringFieldUpdateOperationsInput
   notifications: NotificationUpdateManyWithoutTarget_userNestedInput
-  password: StringFieldUpdateOperationsInput
-  password_digest: StringFieldUpdateOperationsInput
+  password: NullableStringFieldUpdateOperationsInput
+  password_digest: NullableStringFieldUpdateOperationsInput
   tasks: TaskUpdateManyWithoutOwnerNestedInput
   update_at: DateTimeFieldUpdateOperationsInput
 }
@@ -2628,9 +2633,9 @@ input UserUpdateWithoutNotificationsInput {
   email: StringFieldUpdateOperationsInput
   id: StringFieldUpdateOperationsInput
   last_sign_in_at: DateTimeFieldUpdateOperationsInput
-  name: StringFieldUpdateOperationsInput
-  password: StringFieldUpdateOperationsInput
-  password_digest: StringFieldUpdateOperationsInput
+  name: NullableStringFieldUpdateOperationsInput
+  password: NullableStringFieldUpdateOperationsInput
+  password_digest: NullableStringFieldUpdateOperationsInput
   tasks: TaskUpdateManyWithoutOwnerNestedInput
   update_at: DateTimeFieldUpdateOperationsInput
 }
@@ -2642,10 +2647,10 @@ input UserUpdateWithoutTasksInput {
   email: StringFieldUpdateOperationsInput
   id: StringFieldUpdateOperationsInput
   last_sign_in_at: DateTimeFieldUpdateOperationsInput
-  name: StringFieldUpdateOperationsInput
+  name: NullableStringFieldUpdateOperationsInput
   notifications: NotificationUpdateManyWithoutTarget_userNestedInput
-  password: StringFieldUpdateOperationsInput
-  password_digest: StringFieldUpdateOperationsInput
+  password: NullableStringFieldUpdateOperationsInput
+  password_digest: NullableStringFieldUpdateOperationsInput
   update_at: DateTimeFieldUpdateOperationsInput
 }
 
@@ -2679,10 +2684,10 @@ input UserWhereInput {
   email: StringFilter
   id: StringFilter
   last_sign_in_at: DateTimeFilter
-  name: StringFilter
+  name: StringNullableFilter
   notifications: NotificationListRelationFilter
-  password: StringFilter
-  password_digest: StringFilter
+  password: StringNullableFilter
+  password_digest: StringNullableFilter
   tasks: TaskListRelationFilter
   update_at: DateTimeFilter
 }

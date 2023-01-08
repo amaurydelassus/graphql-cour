@@ -26,10 +26,12 @@ In new terminal, enter the directory `task-manager/frontend-gatsby/` :
 [![Image](https://i.goopics.net/lrb265.png)](https://goopics.net/i/lrb265)
 - create user account in database by frontend (with GraphQL) but no use bcrypt
 [![Image](https://i.goopics.net/cafh2r.png)](https://goopics.net/i/cafh2r)
-- use bcrypt for sign up
-# DO:
 - add Login Resolver with bcrypt
+- use bcrypt for sign up
 - use bcrypt for sign in
+
+# DO:
+
 
 # TO DO :
 - create task with front
