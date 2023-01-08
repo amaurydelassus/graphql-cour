@@ -32,6 +32,7 @@ In new terminal, enter the directory `task-manager/frontend-gatsby/` :
 
 # DO:
 
+
 # TO DO :
 - create task with front
 - assign task
