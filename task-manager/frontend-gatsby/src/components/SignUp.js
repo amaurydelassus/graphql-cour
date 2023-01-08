@@ -29,16 +29,16 @@ const SignUp = () => {
     }
   }
 
+
   function submit() {
+      const current_date = new Date().toISOString();
+      console.log("date = " + current_date + ".")
       signUp({
         variables: {
             name: name,
-            password: password,
             email: email,
-            last_sign_in_at : new Date().toISOString().split('T')[0],
+            password: password,
             password_digest : password,
-            created_at : new Date().toISOString().split('T')[0],
-            updated_at : new Date().toISOString().split('T')[0],
           }
       }
       )

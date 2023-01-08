@@ -9,6 +9,7 @@ import { useServer } from 'graphql-ws/lib/use/ws';
 
 import { resolvers as generatedResolvers } from "@generated/index";
 import { SubscriptionResolver } from './resolvers/SubscriptionResolver'
+import { LoginResolver } from './resolvers/LoginResolver'
 
 import { RedisPubSub } from 'graphql-redis-subscriptions';
 
@@ -20,6 +21,7 @@ const pubSub = new RedisPubSub();
 
 const resolvers = [
   ...generatedResolvers,
+  LoginResolver,
   SubscriptionResolver,
 ] as TypeGraphQL.NonEmptyArray<Function>;
 
