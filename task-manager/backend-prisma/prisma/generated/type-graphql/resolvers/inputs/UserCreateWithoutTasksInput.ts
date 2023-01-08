@@ -16,9 +16,9 @@ export class UserCreateWithoutTasksInput {
   id?: string | undefined;
 
   @TypeGraphQL.Field(_type => String, {
-    nullable: false
+    nullable: true
   })
-  name!: string;
+  name?: string | undefined;
 
   @TypeGraphQL.Field(_type => String, {
     nullable: false
@@ -26,14 +26,14 @@ export class UserCreateWithoutTasksInput {
   email!: string;
 
   @TypeGraphQL.Field(_type => String, {
-    nullable: false
+    nullable: true
   })
-  password!: string;
+  password?: string | undefined;
 
   @TypeGraphQL.Field(_type => String, {
-    nullable: false
+    nullable: true
   })
-  password_digest!: string;
+  password_digest?: string | undefined;
 
   @TypeGraphQL.Field(_type => Date, {
     nullable: true

@@ -16,12 +16,12 @@ generator typegraphql {
 
 model User {
     id              String  @id @default(cuid())
-    name            String
+    name            String?
     email           String  @unique
     /// @TypeGraphQL.omit(output: true)
-    password        String
+    password        String?
     /// @TypeGraphQL.omit(output: true)
-    password_digest String
+    password_digest String?
     last_sign_in_at DateTime @default(now())
     created_at      DateTime @default(now())
     update_at       DateTime @default(now())

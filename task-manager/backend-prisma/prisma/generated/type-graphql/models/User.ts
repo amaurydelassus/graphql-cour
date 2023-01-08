@@ -19,18 +19,18 @@ export class User {
   id!: string;
 
   @TypeGraphQL.Field(_type => String, {
-    nullable: false
+    nullable: true
   })
-  name!: string;
+  name?: string | null;
 
   @TypeGraphQL.Field(_type => String, {
     nullable: false
   })
   email!: string;
 
-  password?: string;
+  password?: string | null;
 
-  password_digest?: string;
+  password_digest?: string | null;
 
   @TypeGraphQL.Field(_type => Date, {
     nullable: false
