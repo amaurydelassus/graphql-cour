@@ -1153,6 +1153,7 @@ type Mutation {
   deleteOneTask(where: TaskWhereUniqueInput!): Task
   deleteOneUser(where: UserWhereUniqueInput!): User
   publishMessage(message: String!): Boolean
+  signUp(data: UserCreateInput!): User!
   updateManyAction(data: ActionUpdateManyMutationInput!, where: ActionWhereInput): AffectedRowsOutput!
   updateManyAssignee(data: AssigneeUpdateManyMutationInput!, where: AssigneeWhereInput): AffectedRowsOutput!
   updateManyComment(data: CommentUpdateManyMutationInput!, where: CommentWhereInput): AffectedRowsOutput!

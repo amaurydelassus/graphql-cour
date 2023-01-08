@@ -29,7 +29,10 @@ const SignUp = () => {
     }
   }
 
+
   function submit() {
+      const current_date = new Date().toISOString();
+      console.log("date = " + current_date + ".")
       signUp({
         variables: {
             name: name,
