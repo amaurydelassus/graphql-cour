@@ -20,13 +20,16 @@ In new terminal, enter the directory `task-manager/frontend-gatsby/` :
 - yarn
 - yarn start
 
-# DO :
+# DONE:
 - server back and front
 - call by appolo and client
 [![Image](https://i.goopics.net/lrb265.png)](https://goopics.net/i/lrb265)
 - create user account in database by frontend (with GraphQL) but no use bcrypt
 [![Image](https://i.goopics.net/cafh2r.png)](https://goopics.net/i/cafh2r)
-- 
+- use bcrypt for sign up
+# DO:
+- add Login Resolver with bcrypt
+- use bcrypt for sign in
 
 # TO DO :
 - create task with front
@@ -34,8 +37,6 @@ In new terminal, enter the directory `task-manager/frontend-gatsby/` :
 - comment task
 - replay comment
 - change the status of a task
-- add Login Resolver with bcrypt
-- use bcrypt for sign in/up
 - add subscription for :
   - assing task
   - comment task
