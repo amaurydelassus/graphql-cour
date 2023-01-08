@@ -14,6 +14,7 @@ CREATE TYPE "TargetTypeActionTaskManagerEnums" AS ENUM ('user', 'admin');
 CREATE TABLE "User" (
     "id" TEXT NOT NULL,
     "name" TEXT NOT NULL,
+    "email" TEXT NOT NULL,
     "password" TEXT NOT NULL,
     "password_digest" TEXT NOT NULL,
     "last_sign_in_at" TIMESTAMP(3) NOT NULL,
@@ -82,6 +83,9 @@ CREATE TABLE "Task" (
 
     CONSTRAINT "Task_pkey" PRIMARY KEY ("id")
 );
+
+-- CreateIndex
+CREATE UNIQUE INDEX "User_email_key" ON "User"("email");
 
 -- CreateIndex
 CREATE INDEX "Assignee_userId_taskId_idx" ON "Assignee"("userId", "taskId");

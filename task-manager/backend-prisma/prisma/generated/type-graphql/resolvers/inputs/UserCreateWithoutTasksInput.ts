@@ -23,6 +23,11 @@ export class UserCreateWithoutTasksInput {
   @TypeGraphQL.Field(_type => String, {
     nullable: false
   })
+  email!: string;
+
+  @TypeGraphQL.Field(_type => String, {
+    nullable: false
+  })
   password!: string;
 
   @TypeGraphQL.Field(_type => String, {
@@ -31,19 +36,19 @@ export class UserCreateWithoutTasksInput {
   password_digest!: string;
 
   @TypeGraphQL.Field(_type => Date, {
-    nullable: false
+    nullable: true
   })
-  last_sign_in_at!: Date;
+  last_sign_in_at?: Date | undefined;
 
   @TypeGraphQL.Field(_type => Date, {
-    nullable: false
+    nullable: true
   })
-  created_at!: Date;
+  created_at?: Date | undefined;
 
   @TypeGraphQL.Field(_type => Date, {
-    nullable: false
+    nullable: true
   })
-  update_at!: Date;
+  update_at?: Date | undefined;
 
   @TypeGraphQL.Field(_type => CommentCreateNestedManyWithoutOwnerInput, {
     nullable: true

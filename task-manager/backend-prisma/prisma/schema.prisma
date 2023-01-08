@@ -1,6 +1,6 @@
 datasource db {
+  url      = env("DATABASE_URL")
   provider = "postgresql"
-  url      = "postgresql://adelassus@localhost:5432/task-manager-graphql?schema=public"
 }
 
 generator client {
@@ -17,13 +17,14 @@ generator typegraphql {
 model User {
     id              String  @id @default(cuid())
     name            String
+    email           String  @unique
     /// @TypeGraphQL.omit(output: true)
     password        String
     /// @TypeGraphQL.omit(output: true)
     password_digest String
-    last_sign_in_at DateTime
-    created_at      DateTime
-    update_at       DateTime
+    last_sign_in_at DateTime @default(now())
+    created_at      DateTime @default(now())
+    update_at       DateTime @default(now())
     tasks Task[]
     comments Comment[]
     assignees Assignee[]

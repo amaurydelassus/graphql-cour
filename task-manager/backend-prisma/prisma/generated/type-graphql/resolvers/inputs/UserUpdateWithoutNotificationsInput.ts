@@ -25,6 +25,11 @@ export class UserUpdateWithoutNotificationsInput {
   @TypeGraphQL.Field(_type => StringFieldUpdateOperationsInput, {
     nullable: true
   })
+  email?: StringFieldUpdateOperationsInput | undefined;
+
+  @TypeGraphQL.Field(_type => StringFieldUpdateOperationsInput, {
+    nullable: true
+  })
   password?: StringFieldUpdateOperationsInput | undefined;
 
   @TypeGraphQL.Field(_type => StringFieldUpdateOperationsInput, {

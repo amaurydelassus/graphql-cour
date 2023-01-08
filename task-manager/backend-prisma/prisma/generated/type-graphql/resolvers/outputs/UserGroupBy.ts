@@ -24,6 +24,11 @@ export class UserGroupBy {
   @TypeGraphQL.Field(_type => String, {
     nullable: false
   })
+  email!: string;
+
+  @TypeGraphQL.Field(_type => String, {
+    nullable: false
+  })
   password!: string;
 
   @TypeGraphQL.Field(_type => String, {

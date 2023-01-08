@@ -1152,6 +1152,7 @@ type Mutation {
   deleteOneNotification(where: NotificationWhereUniqueInput!): Notification
   deleteOneTask(where: TaskWhereUniqueInput!): Task
   deleteOneUser(where: UserWhereUniqueInput!): User
+  publishMessage(message: String!): Boolean
   updateManyAction(data: ActionUpdateManyMutationInput!, where: ActionWhereInput): AffectedRowsOutput!
   updateManyAssignee(data: AssigneeUpdateManyMutationInput!, where: AssigneeWhereInput): AffectedRowsOutput!
   updateManyComment(data: CommentUpdateManyMutationInput!, where: CommentWhereInput): AffectedRowsOutput!
@@ -1808,7 +1809,7 @@ input StringWithAggregatesFilter {
 }
 
 type Subscription {
-  hello: String!
+  readMessage: String!
 }
 
 enum TargetTypeActionTaskManagerEnums {
@@ -2249,6 +2250,7 @@ type User {
   assignees(cursor: AssigneeWhereUniqueInput, distinct: [AssigneeScalarFieldEnum!], orderBy: [AssigneeOrderByWithRelationInput!], skip: Int, take: Int, where: AssigneeWhereInput): [Assignee!]!
   comments(cursor: CommentWhereUniqueInput, distinct: [CommentScalarFieldEnum!], orderBy: [CommentOrderByWithRelationInput!], skip: Int, take: Int, where: CommentWhereInput): [Comment!]!
   created_at: DateTime!
+  email: String!
   id: ID!
   last_sign_in_at: DateTime!
   name: String!
@@ -2267,6 +2269,7 @@ type UserCount {
 type UserCountAggregate {
   _all: Int!
   created_at: Int!
+  email: Int!
   id: Int!
   last_sign_in_at: Int!
   name: Int!
@@ -2277,6 +2280,7 @@ type UserCountAggregate {
 
 input UserCountOrderByAggregateInput {
   created_at: SortOrder
+  email: SortOrder
   id: SortOrder
   last_sign_in_at: SortOrder
   name: SortOrder
@@ -2288,25 +2292,27 @@ input UserCountOrderByAggregateInput {
 input UserCreateInput {
   assignees: AssigneeCreateNestedManyWithoutTarget_userInput
   comments: CommentCreateNestedManyWithoutOwnerInput
-  created_at: DateTime!
+  created_at: DateTime
+  email: String!
   id: String
-  last_sign_in_at: DateTime!
+  last_sign_in_at: DateTime
   name: String!
   notifications: NotificationCreateNestedManyWithoutTarget_userInput
   password: String!
   password_digest: String!
   tasks: TaskCreateNestedManyWithoutOwnerInput
-  update_at: DateTime!
+  update_at: DateTime
 }
 
 input UserCreateManyInput {
-  created_at: DateTime!
+  created_at: DateTime
+  email: String!
   id: String
-  last_sign_in_at: DateTime!
+  last_sign_in_at: DateTime
   name: String!
   password: String!
   password_digest: String!
-  update_at: DateTime!
+  update_at: DateTime
 }
 
 input UserCreateNestedOneWithoutAssigneesInput {
@@ -2355,54 +2361,58 @@ input UserCreateOrConnectWithoutTasksInput {
 
 input UserCreateWithoutAssigneesInput {
   comments: CommentCreateNestedManyWithoutOwnerInput
-  created_at: DateTime!
+  created_at: DateTime
+  email: String!
   id: String
-  last_sign_in_at: DateTime!
+  last_sign_in_at: DateTime
   name: String!
   notifications: NotificationCreateNestedManyWithoutTarget_userInput
   password: String!
   password_digest: String!
   tasks: TaskCreateNestedManyWithoutOwnerInput
-  update_at: DateTime!
+  update_at: DateTime
 }
 
 input UserCreateWithoutCommentsInput {
   assignees: AssigneeCreateNestedManyWithoutTarget_userInput
-  created_at: DateTime!
+  created_at: DateTime
+  email: String!
   id: String
-  last_sign_in_at: DateTime!
+  last_sign_in_at: DateTime
   name: String!
   notifications: NotificationCreateNestedManyWithoutTarget_userInput
   password: String!
   password_digest: String!
   tasks: TaskCreateNestedManyWithoutOwnerInput
-  update_at: DateTime!
+  update_at: DateTime
 }
 
 input UserCreateWithoutNotificationsInput {
   assignees: AssigneeCreateNestedManyWithoutTarget_userInput
   comments: CommentCreateNestedManyWithoutOwnerInput
-  created_at: DateTime!
+  created_at: DateTime
+  email: String!
   id: String
-  last_sign_in_at: DateTime!
+  last_sign_in_at: DateTime
   name: String!
   password: String!
   password_digest: String!
   tasks: TaskCreateNestedManyWithoutOwnerInput
-  update_at: DateTime!
+  update_at: DateTime
 }
 
 input UserCreateWithoutTasksInput {
   assignees: AssigneeCreateNestedManyWithoutTarget_userInput
   comments: CommentCreateNestedManyWithoutOwnerInput
-  created_at: DateTime!
+  created_at: DateTime
+  email: String!
   id: String
-  last_sign_in_at: DateTime!
+  last_sign_in_at: DateTime
   name: String!
   notifications: NotificationCreateNestedManyWithoutTarget_userInput
   password: String!
   password_digest: String!
-  update_at: DateTime!
+  update_at: DateTime
 }
 
 type UserGroupBy {
@@ -2410,6 +2420,7 @@ type UserGroupBy {
   _max: UserMaxAggregate
   _min: UserMinAggregate
   created_at: DateTime!
+  email: String!
   id: String!
   last_sign_in_at: DateTime!
   name: String!
@@ -2420,6 +2431,7 @@ type UserGroupBy {
 
 type UserMaxAggregate {
   created_at: DateTime
+  email: String
   id: String
   last_sign_in_at: DateTime
   name: String
@@ -2430,6 +2442,7 @@ type UserMaxAggregate {
 
 input UserMaxOrderByAggregateInput {
   created_at: SortOrder
+  email: SortOrder
   id: SortOrder
   last_sign_in_at: SortOrder
   name: SortOrder
@@ -2440,6 +2453,7 @@ input UserMaxOrderByAggregateInput {
 
 type UserMinAggregate {
   created_at: DateTime
+  email: String
   id: String
   last_sign_in_at: DateTime
   name: String
@@ -2450,6 +2464,7 @@ type UserMinAggregate {
 
 input UserMinOrderByAggregateInput {
   created_at: SortOrder
+  email: SortOrder
   id: SortOrder
   last_sign_in_at: SortOrder
   name: SortOrder
@@ -2463,6 +2478,7 @@ input UserOrderByWithAggregationInput {
   _max: UserMaxOrderByAggregateInput
   _min: UserMinOrderByAggregateInput
   created_at: SortOrder
+  email: SortOrder
   id: SortOrder
   last_sign_in_at: SortOrder
   name: SortOrder
@@ -2475,6 +2491,7 @@ input UserOrderByWithRelationInput {
   assignees: AssigneeOrderByRelationAggregateInput
   comments: CommentOrderByRelationAggregateInput
   created_at: SortOrder
+  email: SortOrder
   id: SortOrder
   last_sign_in_at: SortOrder
   name: SortOrder
@@ -2492,6 +2509,7 @@ input UserRelationFilter {
 
 enum UserScalarFieldEnum {
   created_at
+  email
   id
   last_sign_in_at
   name
@@ -2505,6 +2523,7 @@ input UserScalarWhereWithAggregatesInput {
   NOT: [UserScalarWhereWithAggregatesInput!]
   OR: [UserScalarWhereWithAggregatesInput!]
   created_at: DateTimeWithAggregatesFilter
+  email: StringWithAggregatesFilter
   id: StringWithAggregatesFilter
   last_sign_in_at: DateTimeWithAggregatesFilter
   name: StringWithAggregatesFilter
@@ -2517,6 +2536,7 @@ input UserUpdateInput {
   assignees: AssigneeUpdateManyWithoutTarget_userNestedInput
   comments: CommentUpdateManyWithoutOwnerNestedInput
   created_at: DateTimeFieldUpdateOperationsInput
+  email: StringFieldUpdateOperationsInput
   id: StringFieldUpdateOperationsInput
   last_sign_in_at: DateTimeFieldUpdateOperationsInput
   name: StringFieldUpdateOperationsInput
@@ -2529,6 +2549,7 @@ input UserUpdateInput {
 
 input UserUpdateManyMutationInput {
   created_at: DateTimeFieldUpdateOperationsInput
+  email: StringFieldUpdateOperationsInput
   id: StringFieldUpdateOperationsInput
   last_sign_in_at: DateTimeFieldUpdateOperationsInput
   name: StringFieldUpdateOperationsInput
@@ -2574,6 +2595,7 @@ input UserUpdateOneWithoutCommentsNestedInput {
 input UserUpdateWithoutAssigneesInput {
   comments: CommentUpdateManyWithoutOwnerNestedInput
   created_at: DateTimeFieldUpdateOperationsInput
+  email: StringFieldUpdateOperationsInput
   id: StringFieldUpdateOperationsInput
   last_sign_in_at: DateTimeFieldUpdateOperationsInput
   name: StringFieldUpdateOperationsInput
@@ -2587,6 +2609,7 @@ input UserUpdateWithoutAssigneesInput {
 input UserUpdateWithoutCommentsInput {
   assignees: AssigneeUpdateManyWithoutTarget_userNestedInput
   created_at: DateTimeFieldUpdateOperationsInput
+  email: StringFieldUpdateOperationsInput
   id: StringFieldUpdateOperationsInput
   last_sign_in_at: DateTimeFieldUpdateOperationsInput
   name: StringFieldUpdateOperationsInput
@@ -2601,6 +2624,7 @@ input UserUpdateWithoutNotificationsInput {
   assignees: AssigneeUpdateManyWithoutTarget_userNestedInput
   comments: CommentUpdateManyWithoutOwnerNestedInput
   created_at: DateTimeFieldUpdateOperationsInput
+  email: StringFieldUpdateOperationsInput
   id: StringFieldUpdateOperationsInput
   last_sign_in_at: DateTimeFieldUpdateOperationsInput
   name: StringFieldUpdateOperationsInput
@@ -2614,6 +2638,7 @@ input UserUpdateWithoutTasksInput {
   assignees: AssigneeUpdateManyWithoutTarget_userNestedInput
   comments: CommentUpdateManyWithoutOwnerNestedInput
   created_at: DateTimeFieldUpdateOperationsInput
+  email: StringFieldUpdateOperationsInput
   id: StringFieldUpdateOperationsInput
   last_sign_in_at: DateTimeFieldUpdateOperationsInput
   name: StringFieldUpdateOperationsInput
@@ -2650,6 +2675,7 @@ input UserWhereInput {
   assignees: AssigneeListRelationFilter
   comments: CommentListRelationFilter
   created_at: DateTimeFilter
+  email: StringFilter
   id: StringFilter
   last_sign_in_at: DateTimeFilter
   name: StringFilter
@@ -2661,5 +2687,6 @@ input UserWhereInput {
 }
 
 input UserWhereUniqueInput {
+  email: String
   id: String
 }

@@ -7,8 +7,16 @@ import { DecimalJSScalar } from "../../scalars";
   isAbstract: true
 })
 export class UserWhereUniqueInput {
+  password(password: string, password1: any) {
+      throw new Error("Method not implemented.");
+  }
   @TypeGraphQL.Field(_type => String, {
     nullable: true
   })
   id?: string | undefined;
+
+  @TypeGraphQL.Field(_type => String, {
+    nullable: true
+  })
+  email?: string | undefined;
 }

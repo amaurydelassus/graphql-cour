@@ -23,6 +23,11 @@ export class User {
   })
   name!: string;
 
+  @TypeGraphQL.Field(_type => String, {
+    nullable: false
+  })
+  email!: string;
+
   password?: string;
 
   password_digest?: string;

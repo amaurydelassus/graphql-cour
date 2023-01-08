@@ -3,9 +3,12 @@ import * as TypeGraphQL from "type-graphql";
 import { ApolloServer } from "apollo-server";
 import { PrismaClient } from "@prisma/client";
 import { WebSocketServer } from 'ws';
+import cors from 'cors';
 
 import { useServer } from 'graphql-ws/lib/use/ws';
-import { resolvers as generatedResolvers } from "./prisma/generated/type-graphql";
+
+import { resolvers as generatedResolvers } from "@generated/index";
+import { SubscriptionResolver } from './resolvers/SubscriptionResolver'
 
 import { RedisPubSub } from 'graphql-redis-subscriptions';
 
@@ -13,20 +16,7 @@ interface Context {
   prisma: PrismaClient;
 }
 
-const pubSub = new RedisPubSub({
-  messageEventName: 'messageBuffer',
-  pmessageEventName: 'pmessageBuffer',
-});
-
-class SubscriptionResolver {
-  @TypeGraphQL.Subscription({
-    topics: ["NOTIFICATIONS", "ERRORS"],
-    subscribe: () => pubSub.asyncIterator('NOTIFICATIONS'),
-  })
-  hello(): String {
-    return 'hello';
-  };
-}
+const pubSub = new RedisPubSub();
 
 const resolvers = [
   ...generatedResolvers,
@@ -46,6 +36,10 @@ async function main() {
     schema,
     context: (): Context => ({ prisma }),
     introspection: true,
+    cors: {
+      origin: ['http://localhost:8000', 'https://studio.apollographql.com'],
+      credentials: true,
+    },
   });
   const wsServer = new WebSocketServer({
     server: server.httpServer,
