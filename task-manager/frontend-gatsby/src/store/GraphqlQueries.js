@@ -46,11 +46,6 @@ export const CREATE_USER_MUTATION = gql`
     createOneUser(data: { email: $email, password: $password, name: $name , password_digest: $password_digest}) {
       id
       name
-      password
-      password_digest
-      last_sign_in_at
-      created_at
-      updated_at
     }
   }
 `;
