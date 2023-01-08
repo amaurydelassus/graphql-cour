@@ -4,7 +4,6 @@ import { FindUniqueUserOrThrowArgs, CreateOneUserArgs, User } from "@generated/i
 import {getPrismaFromContext, transformCountFieldIntoSelectRelationsCount, transformInfoIntoPrismaArgs } from "@generated/helpers";
 import { prisma } from "@prisma/client";
 import { hash, compare } from 'bcrypt';
-import { SignInArgs } from "./arg/SignInArgs";
 const bcrypt = require('bcrypt');
 @TypeGraphQL.Resolver()
 export class LoginResolver {
