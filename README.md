@@ -24,11 +24,22 @@ In new terminal, enter the directory `task-manager/frontend-gatsby/` :
 - server back and front
 - call by appolo and client
 [![Image](https://i.goopics.net/lrb265.png)](https://goopics.net/i/lrb265)
-- create user in database by frontend (with GraphQL) but no use bcrypt
+- create user account in database by frontend (with GraphQL) but no use bcrypt
 [![Image](https://i.goopics.net/cafh2r.png)](https://goopics.net/i/cafh2r)
 - 
 
 # TO DO :
+- create task with front
+- assign task
+- comment task
+- replay comment
+- change the status of a task
 - add Login Resolver with bcrypt
 - use bcrypt for sign in/up
-- add subscription
+- add subscription for :
+  - assing task
+  - comment task
+  - replay comment task
+  - finsh task
+  - task is deadline nearing
+- task is reading or not reding by user
